@@ -2,6 +2,16 @@ An HTML table generator for laravel collections
 
 ##Eloquent-Table
 
+###Installation
+
+Include the package in `composer.json`:
+
+    "stevebauman/eloquenttable": "dev-master"
+
+Include the service provider in your `app.php` config file:
+
+    'Stevebauman\EloquentTable\PaginationServiceProvider', //Replace the current Pagination Service Provider if you need it
+    'Stevebauman\EloquentTable\EloquentTableServiceProvider',
 
 ###Usage
     
