@@ -69,4 +69,6 @@ With eloquent-table, we can also generate sortable links for columns easily:
 
 A link will be generated inside the column header that will be clickable. The HTML generated will look like:
 
-    <a class="link-sort" href="http://www.example.com/books?field=id&amp;sort=desc">ID <i class="fa fa-sort"></i></a>
+    <a class="link-sort" href="http://www.example.com/books?field=id&amp;sort=desc">
+        ID <i class="fa fa-sort"></i>
+    </a>
