@@ -42,7 +42,7 @@ class EloquentTableServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-            return array('maintenance');
+            return array('eloquenttable');
     }
     
 }
