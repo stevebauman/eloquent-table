@@ -142,7 +142,7 @@ A link will be generated inside the column header that will be clickable. The HT
 
 In your controller:
 
-    $book = Book::find(1);
+    $book = Book::with('authors')->find(1);
     
     return view('book.show', compact('book'));
     
