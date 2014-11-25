@@ -29,15 +29,15 @@ Handling relationship values using `means($column, $relationship)`:
                 'author' => 'Authored By',
                 'owned_by' => 'Owned By',
             ))
-            ->means('owned_by', 'user.full_name')
-            ->render() 
+            ->means('owned_by', 'user.first_name')
+            ->render()
     }}
 
 The model books, needs to have a user method defining it's relation for this to work.
 
 You must also use 'dot' notation to indicate the relationship.
 
-Customizing the display of the column value:
+Customizing the display of the column value using `modify($column, $closure)`:
 
     {{ $books->columns(array(
                 'id' => 'ID',
@@ -52,4 +52,5 @@ Customizing the display of the column value:
             ->render() 
     }}
 
-Using modify, we can specify the column we want to modify, and the function will return the current relationship record, as well as the current base record.
+Using modify, we can specify the column we want to modify, and the function will return the current relationship record,
+as well as the current base record, in this case the book.
