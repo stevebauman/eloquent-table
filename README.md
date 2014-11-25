@@ -80,7 +80,7 @@ You must also use 'dot' notation to indicate the relationship.
             ->render() 
     }}
 
-Using modify, we can specify the column we want to modify, and the function will return the current relationship record,
+Using modify, we can specify the column we want to modify, and the function will return the current relationship record (if the column is a relationship),
 as well as the current base record, in this case the book.
 
 #####With eloquent-table, we can also generate sortable links for columns easily:
