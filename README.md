@@ -49,7 +49,7 @@ Inside your blade view, we just specify the columns we want to show, and then ca
             ->render() 
     }}
 
-Handling relationship values using `means($column, $relationship)`:
+#####Handling relationship values using `means($column, $relationship)`:
 
     {{ $books->columns(array(
                 'id' => 'ID',
@@ -65,7 +65,7 @@ The model books, needs to have a user method defining it's relation for this to 
 
 You must also use 'dot' notation to indicate the relationship.
 
-Customizing the display of the column value using `modify($column, $closure)`:
+#####Customizing the display of the column value using `modify($column, $closure)`:
 
     {{ $books->columns(array(
                 'id' => 'ID',
@@ -83,7 +83,7 @@ Customizing the display of the column value using `modify($column, $closure)`:
 Using modify, we can specify the column we want to modify, and the function will return the current relationship record,
 as well as the current base record, in this case the book.
 
-With eloquent-table, we can also generate sortable links for columns easily:
+#####With eloquent-table, we can also generate sortable links for columns easily:
 
 In your controller:
 
