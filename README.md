@@ -29,6 +29,8 @@ Insert the trait on your model:
 
     }
 
+You're good to go!
+
 ###Usage
     
 Grab records from your model like usual:
