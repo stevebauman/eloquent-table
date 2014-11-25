@@ -15,11 +15,23 @@ Inside your blade view:
 
     {{ $books->columns(array(
                 'id' => 'ID',
-                'status' => 'Status',
-                'priority' => 'Priority',
-                'subject' => 'Subject',
-                'description' => 'Description',
-                'action' => 'Action',
+                'title' => 'Title',
+                'author' => 'Authored By'
             ))
             ->render() 
     }}
+
+Handling relationship values using `means`:
+
+    {{ $books->columns(array(
+                'id' => 'ID',
+                'title' => 'Title',
+                'author' => 'Authored By',
+                'owned_by' => 'Owned By',
+            ))
+            ->means('owned_by', 'user.full_name')
+            ->render() 
+    }}
+
+The model books, needs to have a user method defining it's relation for this to work.
+
