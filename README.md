@@ -54,3 +54,19 @@ Customizing the display of the column value using `modify($column, $closure)`:
 
 Using modify, we can specify the column we want to modify, and the function will return the current relationship record,
 as well as the current base record, in this case the book.
+
+With eloquent-table, we can also generate sortable links for columns easily:
+
+    {{ $books->columns(array(
+                'id' => 'ID',
+                'title' => 'Title',
+                'author' => 'Authored By',
+                'owned_by' => 'Owned By',
+            ))
+            ->sortable(array('id', 'title'))
+            ->render()
+    }}
+
+A link will be generated inside the column header that will be clickable. The HTML generated will look like:
+
+    <a class="link-sort" href="http://www.example.com/books?field=id&amp;sort=desc">ID <i class="fa fa-sort"></i></a>
