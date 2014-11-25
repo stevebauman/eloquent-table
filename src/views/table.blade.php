@@ -28,7 +28,7 @@
                     @if(array_key_exists($key, $collection->eloquentTableModifications))
                     
                         {{ call_user_func_array($collection->eloquentTableModifications[$key], array(
-                                    $record->getRelationshipObject($collection->eloquentTableMeans[$key])
+                                    $record->getRelationshipObject($collection->eloquentTableMeans[$key]), $record
                                 )) 
                         }}
                         

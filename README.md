@@ -46,10 +46,10 @@ Customizing the display of the column value:
                 'owned_by' => 'Owned By',
             ))
             ->means('owned_by', 'user')
-            ->modify('owned_by', function($user) {
+            ->modify('owned_by', function($user, $book) {
                 return $user->first_name . ' ' . $user->last_name;
             })
             ->render() 
     }}
 
-Using modify, we can specify the column we want to modify, and the function will return the current relationship record.
+Using modify, we can specify the column we want to modify, and the function will return the current relationship record, as well as the current base record.
