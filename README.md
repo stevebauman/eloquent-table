@@ -107,3 +107,31 @@ A link will be generated inside the column header that will be clickable. The HT
     <a class="link-sort" href="http://www.example.com/books?field=id&amp;sort=desc">
         ID <i class="fa fa-sort"></i>
     </a>
+
+#####What about if we want to combine this all together, with pagination and sorting? Easy:
+
+    In your controller:
+
+    $books = Book::sort(Input::get('field'), Input::get('sort'))->paginate(25);
+
+    In your view:
+
+    {{ $books->columns(array(
+                'id' => 'ID',
+                'title' => 'Title',
+                'author' => 'Authored By',
+                'owned_by' => 'Owned By',
+                'publisher' => 'Publisher',
+            ))
+            ->means('owned_by', 'user')
+            ->modify('owned_by', function($user, $book) {
+                return $user->first_name . ' ' . $user->last_name;
+            })
+            ->means('publisher', 'publisher')
+            ->modify('publisher', function($publisher, $book) {
+                return 'The publisher of this book: '. $publisher->name;
+            })
+            ->sortable(array('id', 'title'))
+            ->showPages()
+            ->render()
+    }}
