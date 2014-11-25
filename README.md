@@ -146,7 +146,7 @@ In your controller:
     
     return view('book.show', compact('book'));
     
-In this case, the book is going to have many authors (`haveMany` relationship)
+In this case, the book is going to have many authors (`hasMany` relationship)
 
 In your view:
 
