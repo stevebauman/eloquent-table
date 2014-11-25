@@ -113,6 +113,8 @@ A link will be generated inside the column header that will be clickable. The HT
     In your controller:
 
     $books = Book::sort(Input::get('field'), Input::get('sort'))->paginate(25);
+    
+    return view('books.index', compact('books'));
 
     In your view:
 
@@ -134,4 +136,25 @@ A link will be generated inside the column header that will be clickable. The HT
             ->sortable(array('id', 'title'))
             ->showPages()
             ->render()
+    }}
+
+#####What if I want to generate a table for a relationship?:
+
+In your controller:
+
+    $book = Book::find(1);
+    
+    return view('book.show', compact('book'));
+    
+In this case, the book is going to have many authors (`haveMany` relationship)
+
+In your view:
+
+    {{ $book->authors->columns(
+            'id' => 'ID',
+            'name' => 'Name',
+            'books' => 'Total # of Books'
+        )
+        ->means('books', 'num_of_books')
+        ->render()
     }}
