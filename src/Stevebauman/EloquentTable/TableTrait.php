@@ -102,10 +102,10 @@ trait TableTrait {
      * @param Closure $closure
      * @return type
      */
-    public function modify($columns)
+    public function modify($column, $closure)
     {
 
-        $this->eloquentTableModifications = $columns;
+        $this->eloquentTableModifications[$column] = $closure;
         
         return $this;
     }
@@ -175,7 +175,11 @@ trait TableTrait {
     {
         $attributes = explode('.', $column);
         
-        $relationship = $attributes[count($attributes)-2];
+        if(count($attributes) > 1) {
+            $relationship = $attributes[count($attributes)-2];
+        } else {
+            $relationship = $attributes[count($attributes)-1];
+        }
         
         return $this->$relationship;
     }

@@ -21,7 +21,7 @@ Inside your blade view:
             ->render() 
     }}
 
-Handling relationship values using `means`:
+Handling relationship values using `means($column, $relationship)`:
 
     {{ $books->columns(array(
                 'id' => 'ID',
@@ -35,3 +35,21 @@ Handling relationship values using `means`:
 
 The model books, needs to have a user method defining it's relation for this to work.
 
+You must also use 'dot' notation to indicate the relationship.
+
+Customizing the display of the column value:
+
+    {{ $books->columns(array(
+                'id' => 'ID',
+                'title' => 'Title',
+                'author' => 'Authored By',
+                'owned_by' => 'Owned By',
+            ))
+            ->means('owned_by', 'user')
+            ->modify('owned_by', function($user) {
+                return $user->first_name . ' ' . $user->last_name;
+            })
+            ->render() 
+    }}
+
+Using modify, we can specify the column we want to modify, and the function will return the current relationship record.
