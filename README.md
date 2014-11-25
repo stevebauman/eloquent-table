@@ -9,8 +9,12 @@ Include the package in `composer.json`:
     "stevebauman/eloquenttable": "dev-master"
 
 Include the service provider in your `app.php` config file:
-
-    'Stevebauman\EloquentTable\PaginationServiceProvider', //Replace the current Pagination Service Provider if you need it
+    
+    /* 
+    * Replace the current Pagination Service Provider if you use Pagination on
+    * your models
+    */
+    'Stevebauman\EloquentTable\PaginationServiceProvider',
     'Stevebauman\EloquentTable\EloquentTableServiceProvider',
 
 ###Usage
