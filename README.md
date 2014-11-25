@@ -8,6 +8,8 @@ Include the package in `composer.json`:
 
     "stevebauman/eloquenttable": "dev-master"
 
+Now perform a `composer dump-autoload`.
+
 Include the service provider in your `app.php` config file:
     
     /* 
@@ -16,6 +18,16 @@ Include the service provider in your `app.php` config file:
     */
     'Stevebauman\EloquentTable\PaginationServiceProvider',
     'Stevebauman\EloquentTable\EloquentTableServiceProvider',
+
+Insert the trait on your model:
+    
+    class Book extends Eloquent {
+
+        use \Stevebauman\EloquentTable\TableTrait;
+
+        protected $table = 'books';
+
+    }
 
 ###Usage
     
