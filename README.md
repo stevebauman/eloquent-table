@@ -11,7 +11,7 @@ Grab records from your model like usual:
 
     return view('books.index', compact('books'));
 
-Inside your blade view:
+Inside your blade view, we just specify the columns we want to show, and then call the render method:
 
     {{ $books->columns(array(
                 'id' => 'ID',
