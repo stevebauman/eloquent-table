@@ -85,6 +85,9 @@ as well as the current base record, in this case the book.
 
 With eloquent-table, we can also generate sortable links for columns easily:
 
+    $books = Book::sort(Input::get('field'), Input::get('sort'))->get();
+
+
     {{ $books->columns(array(
                 'id' => 'ID',
                 'title' => 'Title',
