@@ -178,7 +178,22 @@ In your controller:
 In your view:
 
     {{ 
-        $authors->columns('')
+        $authors->columns(array(
+            'name' => 'Name',
+        ))->render()
+    }}
+
+#####Customizing table attributes using `attributes($attributes = array())`
+
+    {{ 
+        $authors->columns(array(
+            'name' => 'Name',
+        ))
+        ->attributes(array(
+            'id' => 'table-1',
+            'class' => 'table table-striped table-bordered',
+        ))
+        ->render()
     }}
 
 ##TO DO 
