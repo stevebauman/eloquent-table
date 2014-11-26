@@ -158,3 +158,26 @@ In your view:
         ->means('books', 'num_of_books')
         ->render()
     }}
+
+Keep in mind, we cannot paginate the table, or provide sortable columns on relationships. If you need this, grab it separately:
+
+In your controller:
+
+    $book = Book::find(1);
+
+    $authors = Authors::where('book_id', $book->id)->paginate(25);
+
+    return view('books.show', array(
+        'book' => $book,
+        'authors' => $authors,
+    ));
+
+In your view:
+
+    {{ 
+        $authors->columns('')
+    }}
+
+##TO DO 
+
+Relationship sorting
