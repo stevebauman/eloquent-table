@@ -69,7 +69,16 @@ trait TableTrait {
      */
     public function attributes(array $attributes = array())
     {
-        $this->eloquentTableAttributes = $attributes;
+        $attributeString = '';
+        
+        if(count($attributes) > 0) {
+            foreach ($attributes as $key => $value) {
+                
+                $attributeString .= " " . $key . "='" . $value . "'";
+            }
+        }
+
+        $this->eloquentTableAttributes = $attributeString;
         
         return $this;
     }
