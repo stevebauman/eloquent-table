@@ -110,13 +110,13 @@ A link will be generated inside the column header that will be clickable. The HT
 
 #####What about if we want to combine this all together, with pagination and sorting? Easy:
 
-    In your controller:
+In your controller:
 
     $books = Book::sort(Input::get('field'), Input::get('sort'))->paginate(25);
     
     return view('books.index', compact('books'));
 
-    In your view:
+In your view:
 
     {{ $books->columns(array(
                 'id' => 'ID',
@@ -145,7 +145,7 @@ In your controller:
     $book = Book::with('authors')->find(1);
     
     return view('book.show', compact('book'));
-    
+
 In this case, the book is going to have many authors (`hasMany` relationship)
 
 In your view:
