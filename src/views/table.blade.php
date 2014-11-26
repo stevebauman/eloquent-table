@@ -4,13 +4,19 @@
     <thead>
         <tr>
         @foreach($collection->eloquentTableColumns as $key=>$name)
-            
+            <th>
             @if(in_array($key, $collection->eloquentTableSort))
-                <th>{{ url_to_sort($name, array('field'=>$key, 'sort'=>'asc')) }}</th>
-            @else
-                <th>{{ ucfirst($name) }}</th>
-            @endif
+                
+                {{ url_to_sort($name, array('field'=>$key, 'sort'=>'asc')) }}
+                
+            @elseif(array_key_exists($key, $collection->eloquentTableSort))
             
+                {{ url_to_sort($name, array('field'=>$collection->eloquentTableSort[$key], 'sort'=>'asc')) }}
+                
+            @else
+                {{ ucfirst($name) }}
+            @endif
+            </th>
         @endforeach
         
         </tr>

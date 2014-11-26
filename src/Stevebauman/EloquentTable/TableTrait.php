@@ -140,6 +140,7 @@ trait TableTrait {
     
     /**
      * Retrieves an eloquent relationships nested property
+     * from a column
      * 
      * @param string $column
      * @return mixed
@@ -171,6 +172,12 @@ trait TableTrait {
         return $tmpStr;
     }
     
+    /**
+     * Retrieves an eloquent relationship object from a column
+     * 
+     * @param string $column
+     * @return object
+     */
     public function getRelationshipObject($column)
     {
         $attributes = explode('.', $column);

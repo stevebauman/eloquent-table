@@ -1,6 +1,14 @@
 {
     "name": "stevebauman/eloquenttable",
-    "description": "",
+    "description": "An HTML table generator for laravel collections",
+    "license" : "MIT",
+    "keywords" : [
+            "laravel", 
+            "php", 
+            "table", 
+            "html", 
+            "eloquent"
+    ],
     "authors": [
         {
             "name": "Steve Bauman",
