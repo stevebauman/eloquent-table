@@ -1,3 +1,6 @@
+![Eloquent Table Banner]
+(https://github.com/stevebauman/eloquenttable/blob/master/eloquent-table-banner.jpg)
+
 An HTML table generator for laravel collections
 
 ##Eloquent-Table
