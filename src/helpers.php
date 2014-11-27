@@ -1,5 +1,13 @@
 <?php
-
+    
+    /**
+     * Returns a URL with supplied query parameters and current icon for
+     * the current sort direction
+     * 
+     * @param string $title
+     * @param array $parameters
+     * @return string
+     */
     function url_to_sort($title, $parameters)
     {
         $field = Input::get('field');
@@ -22,7 +30,7 @@
     
     /**
      * Helper for view facade. Checks if view helper function already exists
-     * for Laravel 5 support
+     * for Laravel 5 support. This is identical to the Laravel 5 view() helper.
      * 
      * @param string $view
      * @param array $data
