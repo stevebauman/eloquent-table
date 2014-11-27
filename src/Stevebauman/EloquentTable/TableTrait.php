@@ -3,14 +3,31 @@
 namespace Stevebauman\EloquentTable;
 
 use Stevebauman\EloquentTable\TableCollection;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * TableTrait
+ * 
+ * Allows a laravel collection / eloquent collection to be converted into an
+ * HTML table.
+ * 
+ * @package EloquentTable
+ * @author Steve Bauman <steven_bauman_7@hotmail.com>
+ * @license    http://opensource.org/licenses/MIT MIT
+ */
 trait TableTrait {
     
     /*
      * Stores the columns to display
      */
     public $eloquentTableColumns = array();
+    
+    /*
+     * Stores the columns to hide when using
+     * responsive templates
+     */
+    public $eloquentTableHiddenColumns = array();
     
     /*
      * Stores the column modifications
@@ -51,6 +68,20 @@ trait TableTrait {
         return $this;
     }
     
+    /**
+     * Assigns columns to hide for smartphone viewing
+     * on responsive designed websites such as bootstrap
+     * 
+     * @param array $columns
+     * @return object
+     */
+    public function hidden(array $columns = array())
+    {
+        $this->eloquentTableHiddenColumns = $columns;
+        
+        return $this;
+    }
+    
     /*
      * Enables pages to be shown on the view
      */
@@ -69,16 +100,7 @@ trait TableTrait {
      */
     public function attributes(array $attributes = array())
     {
-        $attributeString = '';
-        
-        if(count($attributes) > 0) {
-            foreach ($attributes as $key => $value) {
-                
-                $attributeString .= " " . $key . "='" . $value . "'";
-            }
-        }
-
-        $this->eloquentTableAttributes = $attributeString;
+        $this->eloquentTableAttributes = $this->arrayToHtmlAttributes($attributes);
         
         return $this;
     }
@@ -202,6 +224,38 @@ trait TableTrait {
     }
     
     /**
+     * Retrieves hidden column attributes
+     * 
+     * @param string $column
+     * @return string
+     */
+    public function getHiddenColumnAttributes($column)
+    {
+        /*
+         * Check if custom attributes are being set on hidden column
+         */
+        if(array_key_exists($column, $this->eloquentTableHiddenColumns)){
+            
+            return $this->arrayToHtmlAttributes($this->eloquentTableHiddenColumns[$column]);
+            
+        /*
+         * No custom attributes found, using default config attributes
+         */
+        } elseif(in_array($column, $this->eloquentTableHiddenColumns)){
+            
+            return $this->arrayToHtmlAttributes(Config::get('eloquenttable::default_hidden_column_attributes'));
+        
+        /*
+         * Column wasn't found on the table
+         */
+        } else {
+            
+            return NULL;
+            
+        }
+    }
+    
+    /**
      * Allows all columns on the current database table to be sorted through
      * query scope
      * 
@@ -256,6 +310,28 @@ trait TableTrait {
 
         return new TableCollection($models);
         
+    }
+    
+    /**
+     * Converts an array of attributes to an html attribute string
+     * 
+     * @param array $attributes
+     * @return string
+     */
+    private function arrayToHtmlAttributes(array $attributes = array())
+    {
+        $attributeString = '';
+        
+        if(count($attributes) > 0) {
+            
+            foreach ($attributes as $key => $value) {
+                
+                $attributeString .= " " . $key . "='" . $value . "'";
+            }
+            
+        }
+        
+        return $attributeString;
     }
     
 }

@@ -4,7 +4,9 @@
     <thead>
         <tr>
         @foreach($collection->eloquentTableColumns as $key=>$name)
-            <th>
+        
+            <th {{ $collection->getHiddenColumnAttributes($key) }}>
+                 
             @if(in_array($key, $collection->eloquentTableSort))
                 
                 {{ url_to_sort($name, array('field'=>$key, 'sort'=>'asc')) }}
@@ -16,6 +18,7 @@
             @else
                 {{ ucfirst($name) }}
             @endif
+            
             </th>
         @endforeach
         
@@ -28,7 +31,8 @@
             
             @foreach($collection->eloquentTableColumns as $key=>$name)
                 
-                <td>
+                <td {{ $collection->getHiddenColumnAttributes($key) }}>
+                     
                 @if(array_key_exists($key, $collection->eloquentTableMeans))
                 
                     @if(array_key_exists($key, $collection->eloquentTableModifications))
@@ -64,6 +68,7 @@
                     @endif
                     
                 @endif
+                
                 </td>
             @endforeach
             
