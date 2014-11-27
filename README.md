@@ -33,6 +33,10 @@ Insert the trait on your model:
 
     }
 
+Publish the config file (optional)
+
+    php artisan config:publish stevebauman/eloquenttable
+
 You're good to go!
 
 ###Usage

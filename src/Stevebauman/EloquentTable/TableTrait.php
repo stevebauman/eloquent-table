@@ -136,7 +136,6 @@ trait TableTrait {
      */
     public function modify($column, $closure)
     {
-
         $this->eloquentTableModifications[$column] = $closure;
         
         return $this;
