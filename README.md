@@ -11,7 +11,7 @@ Include the package in `composer.json`:
 
     "stevebauman/eloquenttable": "dev-master"
 
-Now perform a `composer dump-autoload`.
+Now perform a `composer update`.
 
 Include the service provider in your `app.php` config file:
     
