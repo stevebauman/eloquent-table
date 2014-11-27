@@ -197,7 +197,7 @@ In your view:
         ->render()
     }}
 
-####Showing your pages somewhere else:
+#####Showing your pages somewhere else:
 
 Just don't call the `showPages()` method on the collection and put your pages
 somewhere on your page like you would regularly do.
