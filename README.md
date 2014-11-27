@@ -17,7 +17,8 @@ Include the service provider in your `app.php` config file:
     
     /* 
     * Replace the current Pagination Service Provider if you use Pagination on
-    * your models
+    * your models. This paginator class is identical to the regular Laravel class,
+    * it just returns a different collection instance.
     */
     'Stevebauman\EloquentTable\PaginationServiceProvider',
     'Stevebauman\EloquentTable\EloquentTableServiceProvider',
@@ -195,6 +196,24 @@ In your view:
         ))
         ->render()
     }}
+
+####Showing your pages somewhere else:
+
+Just don't call the `showPages()` method on the collection and put your pages
+somewhere on your page like you would regularly do.
+
+    {{ 
+        $authors->columns(array(
+            'name' => 'Name',
+        ))
+        ->attributes(array(
+            'id' => 'table-1',
+            'class' => 'table table-striped table-bordered',
+        ))
+        ->render()
+    }}
+
+    <div class="text-center">{{ $authors->appends(Input::except('page'))->links() }}</div>
 
 ##TO DO 
 

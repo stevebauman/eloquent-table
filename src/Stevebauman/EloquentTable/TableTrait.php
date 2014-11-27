@@ -106,6 +106,7 @@ trait TableTrait {
     }
     
     /**
+     * Stores modifications to columns
      * 
      * @param type $column
      * @param Closure $closure
@@ -120,7 +121,7 @@ trait TableTrait {
     }
     
     /**
-     * 
+     * Stores columns to sort in an array
      * 
      * @param type $columns
      * @return type
@@ -159,7 +160,7 @@ trait TableTrait {
         $attributes = explode('.', $column);
         
         $tmpStr = $this;
-
+        
         foreach($attributes as $attribute) {
             
             if($attribute === end($attributes)){
