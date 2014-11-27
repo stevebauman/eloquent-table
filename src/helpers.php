@@ -19,3 +19,20 @@
 
         return sprintf('<a class="link-sort" href="%s">%s <i class="%s"></i></a>', Request::url() . '?' .  http_build_query($parameters), $title, $icon);
     }
+    
+    /**
+     * Helper for view facade. Checks if view helper function already exists
+     * for Laravel 5 support
+     * 
+     * @param string $view
+     * @param array $data
+     * @param array $mergeData
+     * @return mixed
+     */
+    if(!function_exists('view'))
+    {
+        function view($view, $data = array(), $mergeData = array())
+        {
+            return View::make($view, $data, $mergeData);
+        }
+    }
