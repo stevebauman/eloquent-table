@@ -9,7 +9,7 @@ An HTML table generator for laravel collections
 
 Include the package in `composer.json`:
 
-    "stevebauman/eloquenttable": "dev-master"
+    "stevebauman/eloquenttable": "1.*"
 
 Now perform a `composer update`.
 
