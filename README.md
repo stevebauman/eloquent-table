@@ -1,6 +1,11 @@
 ![Eloquent Table Banner]
 (https://raw.githubusercontent.com/stevebauman/eloquent-table/master/eloquent-table-banner.jpg)
 
+[![Latest Stable Version](https://poser.pugx.org/stevebauman/eloquenttable/v/stable.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
+[![Total Downloads](https://poser.pugx.org/stevebauman/eloquenttable/downloads.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
+[![Latest Unstable Version](https://poser.pugx.org/stevebauman/eloquenttable/v/unstable.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
+[![License](https://poser.pugx.org/stevebauman/eloquenttable/license.svg)](https://packagist.org/packages/stevebauman/eloquenttable)
+
 An HTML table generator for laravel collections
 
 ##Eloquent-Table

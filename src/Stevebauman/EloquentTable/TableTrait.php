@@ -2,9 +2,10 @@
 
 namespace Stevebauman\EloquentTable;
 
-use Stevebauman\EloquentTable\TableCollection;
+use Closure;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
+use Stevebauman\EloquentTable\TableCollection;
 
 /**
  * TableTrait
@@ -134,7 +135,7 @@ trait TableTrait {
      * @param Closure $closure
      * @return type
      */
-    public function modify($column, $closure)
+    public function modify($column, Closure $closure)
     {
         $this->eloquentTableModifications[$column] = $closure;
         
