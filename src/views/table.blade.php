@@ -6,19 +6,19 @@
         @foreach($collection->eloquentTableColumns as $key=>$name)
         
             <th {{ $collection->getHiddenColumnAttributes($key) }}>
-                 
+
             @if(in_array($key, $collection->eloquentTableSort))
-                
-                {{ url_to_sort($name, array('field'=>$key, 'sort'=>'asc')) }}
-                
+
+                {{ sortableUrlLink($name, array('field'=>$key, 'sort'=>'asc')) }}
+
             @elseif(array_key_exists($key, $collection->eloquentTableSort))
-            
-                {{ url_to_sort($name, array('field'=>$collection->eloquentTableSort[$key], 'sort'=>'asc')) }}
-                
+
+                {{ sortableUrlLink($name, array('field'=>$collection->eloquentTableSort[$key], 'sort'=>'asc')) }}
+
             @else
                 {{ ucfirst($name) }}
             @endif
-            
+
             </th>
         @endforeach
         

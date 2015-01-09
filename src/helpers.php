@@ -8,8 +8,9 @@
      * @param array $parameters
      * @return string
      */
-     if(!function_exists('url_to_sort')){
-        function url_to_sort($title, $parameters)
+    if(!function_exists('sortableUrlLink'))
+    {
+        function sortableUrlLink($title, $parameters)
         {
             $field = Input::get('field');
             $sort = Input::get('sort');
@@ -27,7 +28,7 @@
             }
 
             return sprintf('<a class="link-sort" href="%s">%s <i class="%s"></i></a>', Request::url() . '?' .  http_build_query($parameters), $title, $icon);
-         }
+        }
      }
     
     /**
