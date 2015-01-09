@@ -1,6 +1,7 @@
 ![Eloquent Table Banner]
 (https://raw.githubusercontent.com/stevebauman/eloquent-table/master/eloquent-table-banner.jpg)
 
+[![Travis CI](https://travis-ci.org/stevebauman/eloquent-table.svg?branch=master)](https://travis-ci.org/stevebauman/eloquent-table)
 [![Code Climate](https://codeclimate.com/github/stevebauman/eloquent-table/badges/gpa.svg)](https://codeclimate.com/github/stevebauman/eloquent-table)
 [![Latest Stable Version](https://poser.pugx.org/stevebauman/eloquenttable/v/stable.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
 [![Total Downloads](https://poser.pugx.org/stevebauman/eloquenttable/downloads.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
