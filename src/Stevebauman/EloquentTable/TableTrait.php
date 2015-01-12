@@ -114,7 +114,7 @@ trait TableTrait {
      * @param string $view
      * @return string
      */
-    public function render($view = NULL)
+    public function render($view = '')
     {
         if($view) {
             return view($view, array(
