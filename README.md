@@ -3,6 +3,7 @@
 
 [![Travis CI](https://travis-ci.org/stevebauman/eloquent-table.svg?branch=master)](https://travis-ci.org/stevebauman/eloquent-table)
 [![Code Climate](https://codeclimate.com/github/stevebauman/eloquent-table/badges/gpa.svg)](https://codeclimate.com/github/stevebauman/eloquent-table)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/stevebauman/eloquent-table/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/stevebauman/eloquent-table/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/stevebauman/eloquenttable/v/stable.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
 [![Total Downloads](https://poser.pugx.org/stevebauman/eloquenttable/downloads.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
 [![Latest Unstable Version](https://poser.pugx.org/stevebauman/eloquenttable/v/unstable.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
