@@ -21,13 +21,8 @@ Include the package in `composer.json`:
 
 Now perform a `composer update`.
 
-Include the service provider in your `app.php` config file:
-    
-    /* 
-    * Replace the current Pagination Service Provider if you use Pagination on
-    * your models. This paginator class is identical to the regular Laravel class,
-    * it just returns a different collection instance.
-    */
+Include the service provider in the <em>bottom</em> `app.php` config file:
+
     'Stevebauman\EloquentTable\PaginationServiceProvider',
     'Stevebauman\EloquentTable\EloquentTableServiceProvider',
 

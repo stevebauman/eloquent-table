@@ -23,10 +23,10 @@ class PaginationServiceProvider extends ServiceProvider {
     {
         $this->app->bindShared('paginator', function($app)
         {
-                $paginator = new TablePaginatorFactory($app['request'], $app['view'], $app['translator']);
-                $paginator->setViewName($app['config']['view.pagination']);
-                $app->refresh('request', $paginator, 'setRequest');
-                return $paginator;
+            $paginator = new TablePaginatorFactory($app['request'], $app['view'], $app['translator']);
+            $paginator->setViewName($app['config']['view.pagination']);
+            $app->refresh('request', $paginator, 'setRequest');
+            return $paginator;
         });
     }
     /**
