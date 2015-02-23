@@ -1,6 +1,4 @@
-
 <table @if($collection->eloquentTableAttributes) {{ $collection->eloquentTableAttributes }} @else class="table table-striped" @endif>
-    
     <thead>
         <tr>
         @foreach($collection->eloquentTableColumns as $key=>$name)
@@ -37,9 +35,10 @@
                 
                     @if(array_key_exists($key, $collection->eloquentTableModifications))
                     
-                        {{ call_user_func_array($collection->eloquentTableModifications[$key], array(
-                                    $record->getRelationshipObject($collection->eloquentTableMeans[$key]), $record
-                                )) 
+                        {{
+                            call_user_func_array($collection->eloquentTableModifications[$key], array(
+                                $record->getRelationshipObject($collection->eloquentTableMeans[$key]), $record
+                            ))
                         }}
                         
                     @else
@@ -75,7 +74,6 @@
         </tr>
         @endforeach
     </tbody>
-    
 </table>
 
 @if($collection->eloquentTablePages)
@@ -83,4 +81,3 @@
 <div class="text-center">{{ $collection->appends(Input::except('page'))->links() }}</div>
 
 @endif
-
