@@ -52,24 +52,26 @@ Grab records from your model like usual:
 
 Inside your blade view, we just specify the columns we want to show, and then call the render method:
 
-    {{ $books->columns(array(
-                'id' => 'ID',
-                'title' => 'Title',
-                'author' => 'Authored By'
-            ))
-            ->render() 
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By'
+        ))
+        ->render() 
     }}
 
 #####Handling relationship values using `means($column, $relationship)`:
 
-    {{ $books->columns(array(
-                'id' => 'ID',
-                'title' => 'Title',
-                'author' => 'Authored By',
-                'owned_by' => 'Owned By',
-            ))
-            ->means('owned_by', 'user.first_name')
-            ->render()
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By',
+            'owned_by' => 'Owned By',
+        ))
+        ->means('owned_by', 'user.first_name')
+        ->render()
     }}
 
 The model books, needs to have a user method defining it's relation for this to work.
@@ -78,17 +80,18 @@ You must also use 'dot' notation to indicate the relationship.
 
 #####Customizing the display of the column value using `modify($column, $closure)`:
 
-    {{ $books->columns(array(
-                'id' => 'ID',
-                'title' => 'Title',
-                'author' => 'Authored By',
-                'owned_by' => 'Owned By',
-            ))
-            ->means('owned_by', 'user')
-            ->modify('owned_by', function($user, $book) {
-                return $user->first_name . ' ' . $user->last_name;
-            })
-            ->render() 
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By',
+            'owned_by' => 'Owned By',
+        ))
+        ->means('owned_by', 'user')
+        ->modify('owned_by', function($user, $book) {
+            return $user->first_name . ' ' . $user->last_name;
+        })
+        ->render() 
     }}
 
 Using modify, we can specify the column we want to modify, and the function will return the current relationship record (if the column is a relationship),
@@ -103,14 +106,15 @@ In your controller:
 
 In your view:
 
-    {{ $books->columns(array(
-                'id' => 'ID',
-                'title' => 'Title',
-                'author' => 'Authored By',
-                'owned_by' => 'Owned By',
-            ))
-            ->sortable(array('id', 'title'))
-            ->render()
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By',
+            'owned_by' => 'Owned By',
+        ))
+        ->sortable(array('id', 'title'))
+        ->render()
     }}
 
 A link will be generated inside the column header that will be clickable. The HTML generated will look like:
@@ -129,24 +133,25 @@ In your controller:
 
 In your view:
 
-    {{ $books->columns(array(
-                'id' => 'ID',
-                'title' => 'Title',
-                'author' => 'Authored By',
-                'owned_by' => 'Owned By',
-                'publisher' => 'Publisher',
-            ))
-            ->means('owned_by', 'user')
-            ->modify('owned_by', function($user, $book) {
-                return $user->first_name . ' ' . $user->last_name;
-            })
-            ->means('publisher', 'publisher')
-            ->modify('publisher', function($publisher, $book) {
-                return 'The publisher of this book: '. $publisher->name;
-            })
-            ->sortable(array('id', 'title'))
-            ->showPages()
-            ->render()
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By',
+            'owned_by' => 'Owned By',
+            'publisher' => 'Publisher',
+        ))
+        ->means('owned_by', 'user')
+        ->modify('owned_by', function($user, $book) {
+            return $user->first_name . ' ' . $user->last_name;
+        })
+        ->means('publisher', 'publisher')
+        ->modify('publisher', function($publisher, $book) {
+            return 'The publisher of this book: '. $publisher->name;
+        })
+        ->sortable(array('id', 'title'))
+        ->showPages()
+        ->render()
     }}
 
 #####What if I want to generate a table for a relationship?:
@@ -161,7 +166,8 @@ In this case, the book is going to have many authors (`hasMany` relationship)
 
 In your view:
 
-    {{ $book->authors->columns(
+    {{ 
+        $book->authors->columns(
             'id' => 'ID',
             'name' => 'Name',
             'books' => 'Total # of Books'
