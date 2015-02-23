@@ -5,7 +5,6 @@ namespace Stevebauman\EloquentTable;
 use Closure;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Stevebauman\EloquentTable\TableCollection;
 
 /**
  * TableTrait
@@ -74,7 +73,7 @@ trait TableTrait {
      * on responsive designed websites such as bootstrap
      * 
      * @param array $columns
-     * @return object
+     * @return $this
      */
     public function hidden(array $columns = array())
     {
@@ -85,6 +84,8 @@ trait TableTrait {
     
     /*
      * Enables pages to be shown on the view
+     *
+     * @return $this
      */
     public function showPages()
     {
@@ -97,7 +98,7 @@ trait TableTrait {
      * Assigns attributes to display on the table
      * 
      * @param array $attributes
-     * @return object
+     * @return $this
      */
     public function attributes(array $attributes = array())
     {
@@ -112,7 +113,7 @@ trait TableTrait {
      * Generates view for the table
      * 
      * @param string $view
-     * @return string
+     * @return mixed
      */
     public function render($view = '')
     {
@@ -131,9 +132,9 @@ trait TableTrait {
     /**
      * Stores modifications to columns
      * 
-     * @param type $column
+     * @param string $column
      * @param Closure $closure
-     * @return type
+     * @return $this
      */
     public function modify($column, Closure $closure)
     {
@@ -145,8 +146,8 @@ trait TableTrait {
     /**
      * Stores columns to sort in an array
      * 
-     * @param type $columns
-     * @return type
+     * @param array $columns
+     * @return $this
      */
     public function sortable($columns = array())
     {
@@ -180,27 +181,27 @@ trait TableTrait {
     public function getRelationshipProperty($column)
     {
         $attributes = explode('.', $column);
-        
+
         $tmpStr = $this;
-        
+
         foreach($attributes as $attribute) {
-            
+
             if($attribute === end($attributes)){
-                    
+
                     if(is_object($tmpStr)){
-                
+
                         $tmpStr = $tmpStr->$attribute;
-                    
+
                     }
-                
+
             } else{
-                
+
                 $tmpStr = $this->$attribute;
-     
+
             }
-            
+
         }
-        
+
         return $tmpStr;
     }
     
@@ -208,7 +209,7 @@ trait TableTrait {
      * Retrieves an eloquent relationship object from a column
      * 
      * @param string $column
-     * @return object
+     * @return mixed
      */
     public function getRelationshipObject($column)
     {
@@ -262,7 +263,7 @@ trait TableTrait {
      * @param object $query
      * @param string $field
      * @param string $sort
-     * @return object
+     * @return mixed
      */
     public function scopeSort($query, $field = NULL, $sort = NULL){
         
@@ -299,12 +300,12 @@ trait TableTrait {
         return $query->orderBy('created_at', 'desc');
         
     }
-    
+
     /**
-     * Ovverides the newCollection method from the model this extends from
-     * 
+     * Overrides the newCollection method from the model this extends from
+     *
      * @param array $models
-     * @return \Stevebauman\EloquentTable\TableCollection
+     * @return TableCollection
      */
     public function newCollection(array $models = array()) {
 
