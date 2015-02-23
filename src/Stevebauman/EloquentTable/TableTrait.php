@@ -20,38 +20,52 @@ trait TableTrait {
     
     /*
      * Stores the columns to display
+     *
+     * @var array
      */
     public $eloquentTableColumns = array();
     
     /*
      * Stores the columns to hide when using
      * responsive templates
+     *
+     * @var array
      */
     public $eloquentTableHiddenColumns = array();
     
     /*
      * Stores the column modifications
+     *
+     * @var array
      */
     public $eloquentTableModifications = array();
     
     /*
      * Stores attributes to display onto the table
+     *
+     * @var array
      */
     public $eloquentTableAttributes = array();
     
     /*
      * Stores column relationship meanings
+     *
+     * @var array
      */
     public $eloquentTableMeans = array();
     
     /*
      * Stores column names to apply sorting
+     *
+     * @var array
      */
     public $eloquentTableSort = array();
     
     /*
      * Enables / disables showing the pages on the table if the collection
      * is paginated
+     *
+     * @var bool
      */
     public $eloquentTablePages = false;
     
@@ -59,7 +73,7 @@ trait TableTrait {
      * Assigns columns to display
      * 
      * @param array $columns
-     * @return object
+     * @return $this
      */
     public function columns(array $columns = array())
     {
@@ -162,7 +176,7 @@ trait TableTrait {
      * 
      * @param string $column
      * @param string $relation
-     * @return object
+     * @return $this
      */
     public function means($column, $relation)
     {
@@ -260,7 +274,7 @@ trait TableTrait {
      * Allows all columns on the current database table to be sorted through
      * query scope
      * 
-     * @param object $query
+     * @param $query
      * @param string $field
      * @param string $sort
      * @return mixed
