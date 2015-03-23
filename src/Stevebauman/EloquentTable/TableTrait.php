@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Schema;
  * @author Steve Bauman <steven_bauman_7@hotmail.com>
  * @license    http://opensource.org/licenses/MIT MIT
  */
-trait TableTrait {
-    
+trait TableTrait
+{
     /*
      * Stores the columns to display
      *
@@ -120,9 +120,7 @@ trait TableTrait {
         
         return $this;
     }
-    
-    
-    
+
     /**
      * Generates view for the table
      * 
@@ -131,7 +129,8 @@ trait TableTrait {
      */
     public function render($view = '')
     {
-        if($view) {
+        if($view)
+        {
             return view($view, array(
                 'collection' => $this
             ));
@@ -140,7 +139,6 @@ trait TableTrait {
         return view('eloquenttable::table', array(
             'collection' => $this
         ))->render();
-        
     }
     
     /**
@@ -198,22 +196,15 @@ trait TableTrait {
 
         $tmpStr = $this;
 
-        foreach($attributes as $attribute) {
-
-            if($attribute === end($attributes)){
-
-                    if(is_object($tmpStr)){
-
-                        $tmpStr = $tmpStr->$attribute;
-
-                    }
-
-            } else{
-
+        foreach($attributes as $attribute)
+        {
+            if($attribute === end($attributes))
+            {
+                if(is_object($tmpStr)) $tmpStr = $tmpStr->$attribute;
+            } else
+            {
                 $tmpStr = $this->$attribute;
-
             }
-
         }
 
         return $tmpStr;
@@ -229,9 +220,11 @@ trait TableTrait {
     {
         $attributes = explode('.', $column);
         
-        if(count($attributes) > 1) {
+        if(count($attributes) > 1)
+        {
             $relationship = $attributes[count($attributes)-2];
-        } else {
+        } else
+        {
             $relationship = $attributes[count($attributes)-1];
         }
         
@@ -249,24 +242,21 @@ trait TableTrait {
         /*
          * Check if custom attributes are being set on hidden column
          */
-        if(array_key_exists($column, $this->eloquentTableHiddenColumns)){
-            
+        if(array_key_exists($column, $this->eloquentTableHiddenColumns))
+        {
             return $this->arrayToHtmlAttributes($this->eloquentTableHiddenColumns[$column]);
-            
-        /*
-         * No custom attributes found, using default config attributes
-         */
-        } elseif(in_array($column, $this->eloquentTableHiddenColumns)){
-            
+        } elseif(in_array($column, $this->eloquentTableHiddenColumns))
+        {
+            /*
+             * No custom attributes found, using default config attributes
+             */
             return $this->arrayToHtmlAttributes(Config::get('eloquenttable::default_hidden_column_attributes'));
-        
-        /*
-         * Column wasn't found on the table
-         */
-        } else {
-            
+        } else
+        {
+            /*
+             * Column wasn't found on the table
+             */
             return NULL;
-            
         }
     }
     
@@ -279,13 +269,13 @@ trait TableTrait {
      * @param string $sort
      * @return mixed
      */
-    public function scopeSort($query, $field = NULL, $sort = NULL){
-        
+    public function scopeSort($query, $field = NULL, $sort = NULL)
+    {
         /*
          * Make sure both the field and sort variables are present
          */
-        if($field && $sort){
-            
+        if($field && $sort)
+        {
             /*
              * Retrieve all column names for the current model table
              */
@@ -294,12 +284,13 @@ trait TableTrait {
             /*
              * Make sure the field inputted is available on the current table
              */
-            if(in_array($field, $columns)){
-
+            if(in_array($field, $columns))
+            {
                 /*
                  * Make sure the sort input is equal to asc or desc
                  */
-                if($sort === 'asc' || $sort === 'desc'){
+                if($sort === 'asc' || $sort === 'desc')
+                {
                     /*
                      * Return the query sorted
                      */
@@ -321,10 +312,9 @@ trait TableTrait {
      * @param array $models
      * @return TableCollection
      */
-    public function newCollection(array $models = array()) {
-
+    public function newCollection(array $models = array())
+    {
         return new TableCollection($models);
-        
     }
     
     /**
@@ -337,16 +327,14 @@ trait TableTrait {
     {
         $attributeString = '';
         
-        if(count($attributes) > 0) {
-            
-            foreach ($attributes as $key => $value) {
-                
+        if(count($attributes) > 0)
+        {
+            foreach ($attributes as $key => $value)
+            {
                 $attributeString .= " " . $key . "='" . $value . "'";
             }
-            
         }
         
         return $attributeString;
     }
-    
 }
