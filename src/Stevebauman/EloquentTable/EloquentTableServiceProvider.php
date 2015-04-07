@@ -60,7 +60,8 @@ class EloquentTableServiceProvider extends ServiceProvider
              */
             $this->configSeparator = '.';
         }
-        
+
+        // Include the helpers so we can output sortable links
         include __DIR__ .'/../../helpers.php';
     }
 
