@@ -133,7 +133,7 @@ trait TableTrait
         // If no attributes have been set, we'll set them to the configuration defaults
         if(count($this->eloquentTableAttributes) === 0)
         {
-            $attributes = Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_table_attributes');
+            $attributes = Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_table_attributes', []);
 
             $this->attributes($attributes);
         }
