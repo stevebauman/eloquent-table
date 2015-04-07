@@ -58,7 +58,7 @@ class EloquentTableServiceProvider extends ServiceProvider
              * Set the configuration separator to single dot since
              * configuration retrieval for packages changed from Laravel 4 to 5
              */
-            $this->configSeparator = '.';
+            $this::$configSeparator = '.';
         }
 
         // Include the helpers so we can output sortable links
@@ -79,6 +79,6 @@ class EloquentTableServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-            return array('eloquenttable');
+        return array('eloquenttable');
     }
 }
