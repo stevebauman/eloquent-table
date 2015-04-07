@@ -4,8 +4,11 @@ namespace Stevebauman\EloquentTable;
 
 use Illuminate\Database\Eloquent\Collection;
 
-class TableCollection extends Collection {
-    
+/**
+ * Class TableCollection
+ * @package Stevebauman\EloquentTable
+ */
+class TableCollection extends Collection
+{
     use TableTrait;
-    
 }

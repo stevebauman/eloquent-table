@@ -2,15 +2,18 @@
 
 namespace Stevebauman\EloquentTable;
 
-use Stevebauman\EloquentTable\TablePaginator;
 use Illuminate\Pagination\Factory;
 
-class TablePaginatorFactory extends Factory {
-    
+/**
+ * Class TablePaginatorFactory
+ * @package Stevebauman\EloquentTable
+ */
+class TablePaginatorFactory extends Factory
+{
     public function make(array $items, $total, $perPage = null)
     {
-            $paginator = new TablePaginator($this, $items, $total, $perPage);
-            return $paginator->setupPaginationContext();
+        $paginatedInstance = new TablePaginator($this, $items, $total, $perPage);
+
+        return $paginatedInstance->setupPaginationContext();
     }
-    
 }

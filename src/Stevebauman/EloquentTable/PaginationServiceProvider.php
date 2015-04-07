@@ -2,11 +2,10 @@
 
 namespace Stevebauman\EloquentTable;
 
-use Stevebauman\EloquentTable\TablePaginatorFactory;
 use Illuminate\Support\ServiceProvider;
 
-class PaginationServiceProvider extends ServiceProvider {
-    
+class PaginationServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -38,5 +37,4 @@ class PaginationServiceProvider extends ServiceProvider {
     {
         return array('paginator');
     }
-    
 }

@@ -4,8 +4,12 @@ namespace Stevebauman\EloquentTable;
 
 use Illuminate\Support\ServiceProvider;
 
-class EloquentTableServiceProvider extends ServiceProvider {
-    
+/**
+ * Class EloquentTableServiceProvider
+ * @package Stevebauman\EloquentTable
+ */
+class EloquentTableServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -20,7 +24,23 @@ class EloquentTableServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('stevebauman/eloquenttable');
+        if(method_exists($this, 'package'))
+        {
+            /*
+             * Looks like we're using Laravel 4, let's use the
+             * package method to easily register everything
+             */
+            $this->package('stevebauman/eloquenttable');
+        } else
+        {
+            /*
+             * Looks like we're using Laravel 5, let's set
+             * our configuration file to be publishable
+             */
+            $this->publishes([
+                __DIR__ . '/../../config/config.php' => config_path('eloquenttable.php'),
+            ], 'config');
+        }
         
         include __DIR__ .'/../../helpers.php';
     }
@@ -30,10 +50,7 @@ class EloquentTableServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register()
-    {
-        
-    }
+    public function register() {}
 
     /**
      * Get the services provided by the provider.
@@ -44,5 +61,4 @@ class EloquentTableServiceProvider extends ServiceProvider {
     {
             return array('eloquenttable');
     }
-    
 }
