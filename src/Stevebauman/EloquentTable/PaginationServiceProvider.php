@@ -2,9 +2,13 @@
 
 namespace Stevebauman\EloquentTable;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\PaginationServiceProvider as LaravelPaginationServiceProvider;
 
-class PaginationServiceProvider extends ServiceProvider
+/**
+ * Class PaginationServiceProvider
+ * @package Stevebauman\EloquentTable
+ */
+class PaginationServiceProvider extends LaravelPaginationServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -23,8 +27,11 @@ class PaginationServiceProvider extends ServiceProvider
         $this->app->bindShared('paginator', function($app)
         {
             $paginator = new TablePaginatorFactory($app['request'], $app['view'], $app['translator']);
+
             $paginator->setViewName($app['config']['view.pagination']);
+
             $app->refresh('request', $paginator, 'setRequest');
+
             return $paginator;
         });
     }
