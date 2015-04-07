@@ -13,7 +13,7 @@ An HTML table generator for laravel collections
 
 ##Eloquent-Table
 
-###Installation
+### Installation
 
 Include the package in `composer.json`:
 
@@ -21,10 +21,31 @@ Include the package in `composer.json`:
 
 Now perform a `composer update`.
 
-Include the service provider in the <em>bottom</em> `app.php` config file:
+#### Laravel 4
+
+Include the service providers in the <em>bottom</em> `app/config/app.php` config file:
 
     'Stevebauman\EloquentTable\PaginationServiceProvider',
     'Stevebauman\EloquentTable\EloquentTableServiceProvider',
+
+Publish the config file (optional)
+
+    php artisan config:publish stevebauman/eloquenttable
+    
+#### Laravel 5
+
+Include the service providers in the <em>bottom</em> `config/app.php` config file:
+
+    'Stevebauman\EloquentTable\PaginationServiceProvider',
+    'Stevebauman\EloquentTable\EloquentTableServiceProvider',
+
+Publish the config file (mandatory in Laravel 5)
+
+    php artisan vendor:publish
+
+You're good to go!
+
+###Usage
 
 Insert the trait on your model:
     
@@ -36,14 +57,6 @@ Insert the trait on your model:
 
     }
 
-Publish the config file (optional)
-
-    php artisan config:publish stevebauman/eloquenttable
-
-You're good to go!
-
-###Usage
-    
 Grab records from your model like usual:
 
     $books = Books::get();
