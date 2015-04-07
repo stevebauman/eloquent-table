@@ -53,15 +53,13 @@ class EloquentTableServiceProvider extends ServiceProvider
              * Allow the views to be publishable
              */
             $this->publishes([
-                __DIR__.'/../../views' => base_path('resources/views/stevebauman/eloquenttable'),
+                __DIR__ . '/../../views' => base_path('resources/views/stevebauman/eloquenttable'),
             ], 'views');
 
             /*
              * Load our views
              */
             $this->loadViewsFrom(__DIR__.'/../../views', 'eloquenttable');
-
-
 
             /*
              * Set the configuration separator to single dot since
