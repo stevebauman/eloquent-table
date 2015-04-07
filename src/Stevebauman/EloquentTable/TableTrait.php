@@ -3,6 +3,7 @@
 namespace Stevebauman\EloquentTable;
 
 use Closure;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
@@ -129,14 +130,23 @@ trait TableTrait
      */
     public function render($view = '')
     {
+        // If no attributes have been set, we'll set them to the configuration defaults
+        if(count($this->eloquentTableAttributes) === 0)
+        {
+            $attributes = Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_table_attributes');
+
+            $this->attributes($attributes);
+        }
+
+        // If a view is specified, we'll return the view with our collection
         if($view)
         {
-            return view($view, array(
+            return View::make($view, array(
                 'collection' => $this
             ));
         }
 
-        return view('eloquenttable::table', array(
+        return View::make('eloquenttable::table', array(
             'collection' => $this
         ))->render();
     }
@@ -250,13 +260,13 @@ trait TableTrait
             /*
              * No custom attributes found, using default config attributes
              */
-            return $this->arrayToHtmlAttributes(Config::get('eloquenttable::default_hidden_column_attributes'));
+            return $this->arrayToHtmlAttributes(Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_hidden_column_attributes'));
         } else
         {
             /*
              * Column wasn't found on the table
              */
-            return NULL;
+            return null;
         }
     }
     

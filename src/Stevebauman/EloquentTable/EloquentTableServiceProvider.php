@@ -18,6 +18,14 @@ class EloquentTableServiceProvider extends ServiceProvider
     protected $defer = false;
 
     /**
+     * The configuration separator for packages.
+     * Allows compatibility with Laravel 4 and 5
+     *
+     * @var string
+     */
+    public static $configSeparator = '::';
+
+    /**
      * Bootstrap the application events.
      *
      * @return void
@@ -40,6 +48,17 @@ class EloquentTableServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../config/config.php' => config_path('eloquenttable.php'),
             ], 'config');
+
+            /*
+             * Load our views
+             */
+            $this->loadViewsFrom(__DIR__.'/../../views', 'eloquenttable');
+
+            /*
+             * Set the configuration separator to single dot since
+             * configuration retrieval for packages changed from Laravel 4 to 5
+             */
+            $this->configSeparator = '.';
         }
         
         include __DIR__ .'/../../helpers.php';
