@@ -138,15 +138,23 @@ trait TableTrait
             $this->attributes($attributes);
         }
 
-        // If a view is specified, we'll return the view with our collection
-        if($view)
+        /*
+         * If a view isn't specified, we'll check the configuration
+         * separator to see what laravel version we're using so the
+         * correct blade tags are used.
+         */
+        if( ! $view)
         {
-            return View::make($view, array(
-                'collection' => $this
-            ));
+            if(EloquentTableServiceProvider::$configSeparator === '::')
+            {
+                $view = 'eloquenttable::laravel-4-table';
+            } else
+            {
+                $view = 'eloquenttable::laravel-5-table';
+            }
         }
 
-        return View::make('eloquenttable::table', array(
+        return View::make($view, array(
             'collection' => $this
         ))->render();
     }
