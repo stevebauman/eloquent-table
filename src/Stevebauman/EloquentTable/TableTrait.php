@@ -74,6 +74,7 @@ trait TableTrait
      * Assigns columns to display
      * 
      * @param array $columns
+     *
      * @return $this
      */
     public function columns(array $columns = array())
@@ -88,6 +89,7 @@ trait TableTrait
      * on responsive designed websites such as bootstrap
      * 
      * @param array $columns
+     *
      * @return $this
      */
     public function hidden(array $columns = array())
@@ -96,8 +98,8 @@ trait TableTrait
         
         return $this;
     }
-    
-    /*
+
+    /**
      * Enables pages to be shown on the view
      *
      * @return $this
@@ -113,6 +115,7 @@ trait TableTrait
      * Assigns attributes to display on the table
      * 
      * @param array $attributes
+     *
      * @return $this
      */
     public function attributes(array $attributes = array())
@@ -126,6 +129,7 @@ trait TableTrait
      * Generates view for the table
      * 
      * @param string $view
+     *
      * @return mixed
      */
     public function render($view = '')
@@ -164,6 +168,7 @@ trait TableTrait
      * 
      * @param string $column
      * @param Closure $closure
+     *
      * @return $this
      */
     public function modify($column, Closure $closure)
@@ -177,6 +182,7 @@ trait TableTrait
      * Stores columns to sort in an array
      * 
      * @param array $columns
+     *
      * @return $this
      */
     public function sortable($columns = array())
@@ -192,6 +198,7 @@ trait TableTrait
      * 
      * @param string $column
      * @param string $relation
+     *
      * @return $this
      */
     public function means($column, $relation)
@@ -206,6 +213,7 @@ trait TableTrait
      * from a column
      * 
      * @param string $column
+     *
      * @return mixed
      */
     public function getRelationshipProperty($column)
@@ -232,6 +240,7 @@ trait TableTrait
      * Retrieves an eloquent relationship object from a column
      * 
      * @param string $column
+     *
      * @return mixed
      */
     public function getRelationshipObject($column)
@@ -253,6 +262,7 @@ trait TableTrait
      * Retrieves hidden column attributes
      * 
      * @param string $column
+     *
      * @return string
      */
     public function getHiddenColumnAttributes($column)
@@ -285,6 +295,7 @@ trait TableTrait
      * @param $query
      * @param string $field
      * @param string $sort
+     *
      * @return mixed
      */
     public function scopeSort($query, $field = NULL, $sort = NULL)
@@ -328,6 +339,7 @@ trait TableTrait
      * Overrides the newCollection method from the model this extends from
      *
      * @param array $models
+     *
      * @return TableCollection
      */
     public function newCollection(array $models = array())
@@ -339,6 +351,7 @@ trait TableTrait
      * Converts an array of attributes to an html attribute string
      * 
      * @param array $attributes
+     *
      * @return string
      */
     private function arrayToHtmlAttributes(array $attributes = array())
