@@ -41,6 +41,20 @@ trait TableTrait
      */
     public $eloquentTableModifications = array();
     
+     /*
+     * Stores rows modifications
+     *
+     * @var array
+     */
+    public $eloquentTableRowAttributesModifications = array();
+    
+    /*
+     * Stores cells modifications
+     *
+     * @var array
+     */
+    public $eloquentTableCellAttributesModifications = array();
+    
     /*
      * Stores attributes to display onto the table
      *
@@ -176,6 +190,77 @@ trait TableTrait
         $this->eloquentTableModifications[$column] = $closure;
         
         return $this;
+    }
+    
+    /**
+     * Stores modifications to cells
+     * 
+     * @param string $column
+     * @param Closure $closure
+     *
+     * @return $this
+     */
+    public function modifyCell($column, $closure) {
+        $this->eloquentTableCellAttributesModifications[$column] = $closure;
+        return $this;
+    }
+    
+    /**
+     * Stores modifications to rows
+     * 
+     * @param string $name
+     * @param Closure $closure
+     *
+     * @return $this
+     */
+    public function modifyRow($name, $closure) {
+        $this->eloquentTableRowAttributesModifications[$name] = $closure;
+        return $this;
+    }
+
+    /**
+     * Retrieves cell attributes
+     * 
+     * @param string $column
+     * @param Array $record
+     *
+     * @return string
+     */
+    public function getCellAttributes($column, $record = null) {
+        $attributes = array();
+        if (array_key_exists($column, $this->eloquentTableCellAttributesModifications)) {
+            $attributes = call_user_func($this->eloquentTableCellAttributesModifications[$column], $record);
+            if (array_key_exists($column, $this->eloquentTableHiddenColumns)) {
+                $attributes = array_merge($attributes,$this->eloquentTableHiddenColumns[$column]);
+            } elseif (in_array($column, $this->eloquentTableHiddenColumns)) {
+                /*
+                 * No custom attributes found, using default config attributes
+                 */
+                $attributes = array_merge($attributes,Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_hidden_column_attributes'));
+            }
+            
+            return $this->arrayToHtmlAttributes($attributes);
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * Retrieves row attributes
+     * 
+     * @param Array $record
+     *
+     * @return string
+     */
+    public function getRowAttributes($record) {
+        $attributes = array();
+        foreach ($this->eloquentTableRowAttributesModifications as $closure) {
+            $tmpAtrributes = call_user_func($closure, $record);
+            if (is_array($tmpAtrributes)) {
+                $attributes = array_merge($attributes, $tmpAtrributes);
+            }
+        }
+        return $this->arrayToHtmlAttributes($attributes);
     }
     
     /**

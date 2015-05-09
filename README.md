@@ -110,6 +110,40 @@ You must also use 'dot' notation to indicate the relationship.
 Using modify, we can specify the column we want to modify, and the function will return the current relationship record (if the column is a relationship),
 as well as the current base record, in this case the book.
 
+#####Customizing the attributes of each cell of a column using `modifyCell($column, $closure)`:
+
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By',
+            'owned_by' => 'Owned By',
+        ))
+        ->means('owned_by', 'user')
+        ->modifyCell('owned_by', function($user) {
+            return array('class' => $user->role);
+        })
+        ->render() 
+    }}
+Using modifyCell, we can specify the column of the cell we want to modify, and the function should return an array of attributes to be added to the cell.
+
+#####Customizing the attributes of each row in the table using `modifyRow($name, $closure)`:
+
+    {{ 
+        $books->columns(array(
+            'id' => 'ID',
+            'title' => 'Title',
+            'author' => 'Authored By',
+            'owned_by' => 'Owned By',
+        ))
+        ->means('owned_by', 'user')
+        ->modifyRow('mod1', function($user) {
+            return array('id' => 'user-'.$user->id);
+        })
+        ->render() 
+    }}
+Using modifyRow, we can add named modifications ('mod1' in our previous example), and the function should return an array of attributes to be added to each row.
+
 #####With eloquent-table, we can also generate sortable links for columns easily:
 
 In your controller:
