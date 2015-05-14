@@ -44,7 +44,7 @@ Publish the config file (mandatory in Laravel 5)
 
 You're good to go!
 
-###Usage
+### Usage
 
 Insert the trait on your model:
     
@@ -73,7 +73,7 @@ Inside your blade view, we just specify the columns we want to show, and then ca
         ->render() 
     }}
 
-#####Handling relationship values using `means($column, $relationship)`:
+##### Handling relationship values using `means($column, $relationship)`:
 
     {{ 
         $books->columns(array(
@@ -90,7 +90,7 @@ The model books, needs to have a user method defining it's relation for this to 
 
 You must also use 'dot' notation to indicate the relationship.
 
-#####Customizing the display of the column value using `modify($column, $closure)`:
+##### Customizing the display of the column value using `modify($column, $closure)`:
 
     {{ 
         $books->columns(array(
@@ -109,7 +109,7 @@ You must also use 'dot' notation to indicate the relationship.
 Using modify, we can specify the column we want to modify, and the function will return the current relationship record (if the column is a relationship),
 as well as the current base record, in this case the book.
 
-#####Customizing the attributes of each cell of a column using `modifyCell($column, $closure)`:
+##### Customizing the attributes of each cell of a column using `modifyCell($column, $closure)`:
 
     {{ 
         $books->columns(array(
@@ -126,7 +126,7 @@ as well as the current base record, in this case the book.
     }}
 Using modifyCell, we can specify the column of the cell we want to modify, and the function should return an array of attributes to be added to the cell.
 
-#####Customizing the attributes of each row in the table using `modifyRow($name, $closure)`:
+##### Customizing the attributes of each row in the table using `modifyRow($name, $closure)`:
 
     {{ 
         $books->columns(array(
@@ -143,7 +143,7 @@ Using modifyCell, we can specify the column of the cell we want to modify, and t
     }}
 Using modifyRow, we can add named modifications ('mod1' in our previous example), and the function should return an array of attributes to be added to each row.
 
-#####With eloquent-table, we can also generate sortable links for columns easily:
+##### With eloquent-table, we can also generate sortable links for columns easily:
 
 In your controller:
 
@@ -169,7 +169,7 @@ A link will be generated inside the column header that will be clickable. The HT
         ID <i class="fa fa-sort"></i>
     </a>
 
-#####What about if we want to combine this all together, with pagination and sorting? Easy:
+##### What about if we want to combine this all together, with pagination and sorting? Easy:
 
 In your controller:
 
@@ -200,7 +200,7 @@ In your view:
         ->render()
     }}
 
-#####What if I want to generate a table for a relationship?:
+##### What if I want to generate a table for a relationship?:
 
 In your controller:
 
@@ -243,7 +243,7 @@ In your view:
         ))->render()
     }}
 
-#####Customizing table attributes using `attributes($attributes = array())`
+##### Customizing table attributes using `attributes($attributes = array())`
 
     {{ 
         $authors->columns(array(
@@ -256,7 +256,7 @@ In your view:
         ->render()
     }}
 
-#####Showing your pages somewhere else:
+##### Showing your pages somewhere else:
 
 Just don't call the `showPages()` method on the collection and put your pages
 somewhere on your page like you would regularly do.
@@ -274,6 +274,6 @@ somewhere on your page like you would regularly do.
 
     <div class="text-center">{{ $authors->appends(Input::except('page'))->links() }}</div>
 
-##TO DO 
+##### Why is a pagination service provider required?
 
-Relationship sorting
+When calling `paginate()` on your models and/or collections, a different collection instance is returned. Unfortunately the only solution is to override the default paginator instance. However, this paginator extends laravel's built in paginator, so absolutely no functionality is removed or lost.
