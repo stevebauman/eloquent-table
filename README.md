@@ -8,9 +8,9 @@
 [![Total Downloads](https://poser.pugx.org/stevebauman/eloquenttable/downloads.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
 [![License](https://poser.pugx.org/stevebauman/eloquenttable/license.svg)](https://packagist.org/packages/stevebauman/eloquenttable)
 
-An HTML table generator for laravel collections
+### Description
 
-##Eloquent-Table
+Eloquent table is an HTML table generator for laravel collections.
 
 ### Installation
 
