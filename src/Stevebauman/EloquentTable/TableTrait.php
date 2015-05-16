@@ -140,6 +140,26 @@ trait TableTrait
     }
 
     /**
+     * Sorts collcetion
+     *
+     * @return null
+     */
+    public function collectionSort() {
+        if (Input::has('field') && in_array(Input::get('field'), $this->eloquentTableSort)) {
+            $field = Input::get('field');
+            if (Input::has('sort') && in_array(Input::get('sort'), array('asc', 'desc'))) {
+                $sort = Input::get('sort') == 'desc';
+            } else {
+                $sort = false;
+            }
+            $this->items = $this->sortBy(function($key) use ($field){
+                return $key->{$field};
+            }, null, $sort)->all();
+        }
+    }
+    
+    
+    /**
      * Generates view for the table
      * 
      * @param string $view
@@ -172,6 +192,8 @@ trait TableTrait
             }
         }
 
+        $this->collectionSort();
+        
         return View::make($view, array(
             'collection' => $this
         ))->render();
