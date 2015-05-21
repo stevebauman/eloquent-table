@@ -3,10 +3,10 @@
     "description": "An HTML table generator for laravel collections",
     "license" : "MIT",
     "keywords" : [
-            "laravel", 
-            "php", 
-            "table", 
-            "html", 
+            "laravel",
+            "php",
+            "table",
+            "html",
             "eloquent"
     ],
     "authors": [
@@ -20,11 +20,8 @@
         "illuminate/support": "4.* | 5.*"
     },
     "autoload": {
-        "classmap": [
-            "src"
-        ],
-        "psr-0": {
-            "Stevebauman\\Eloquenttable\\": "src/"
+        "psr-4": {
+            "Stevebauman\\EloquentTable\\": "src/Stevebauman/EloquentTable/"
         }
     },
     "minimum-stability": "stable"
