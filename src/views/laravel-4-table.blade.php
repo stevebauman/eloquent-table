@@ -20,7 +20,7 @@
         @endforeach
         </tr>
     </thead>
-    
+
     <tbody>
         {{-- Let's get started going through the actual collection records and outputting the data --}}
         @foreach($collection as $record)

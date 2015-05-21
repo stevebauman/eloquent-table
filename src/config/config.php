@@ -1,10 +1,7 @@
 <?php
 
 /**
- * 
- * Eloquent Table Configuration File
- *
- * @package EloquentTable
+ * Eloquent Table Configuration File.
  */
 return [
 
@@ -17,7 +14,7 @@ return [
      */
     'default_table_attributes' => [
 
-        'class' => 'table table-striped'
+        'class' => 'table table-striped',
 
     ],
 
@@ -51,5 +48,5 @@ return [
         'desc_sort_class' => 'glyphicon glyphicon-arrow-down',
 
     ],
-    
+
 ];

@@ -5,17 +5,17 @@ namespace Stevebauman\EloquentTable;
 use Illuminate\Pagination\Factory;
 
 /**
- * Class TablePaginatorFactory
- * @package Stevebauman\EloquentTable
+ * Class TablePaginatorFactory.
  */
 class TablePaginatorFactory extends Factory
 {
     /**
-     * Creates and returns a new paginated instance
+     * Creates and returns a new paginated instance.
      *
      * @param array $items
-     * @param int $total
-     * @param null $perPage
+     * @param int   $total
+     * @param null  $perPage
+     *
      * @return $this
      */
     public function make(array $items, $total, $perPage = null)

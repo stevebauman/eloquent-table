@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * TableTrait
- * 
+ * TableTrait.
+ *
  * Allows a laravel collection / eloquent collection to be converted into an
  * HTML table.
- * 
- * @package EloquentTable
+ *
  * @author Steve Bauman <steven_bauman_7@hotmail.com>
  * @license    http://opensource.org/licenses/MIT MIT
  */
@@ -25,7 +24,7 @@ trait TableTrait
      * @var array
      */
     public $eloquentTableColumns = array();
-    
+
     /*
      * Stores the columns to hide when using
      * responsive templates
@@ -33,49 +32,49 @@ trait TableTrait
      * @var array
      */
     public $eloquentTableHiddenColumns = array();
-    
+
     /*
      * Stores the column modifications
      *
      * @var array
      */
     public $eloquentTableModifications = array();
-    
+
      /*
      * Stores rows modifications
      *
      * @var array
      */
     public $eloquentTableRowAttributesModifications = array();
-    
+
     /*
      * Stores cells modifications
      *
      * @var array
      */
     public $eloquentTableCellAttributesModifications = array();
-    
+
     /*
      * Stores attributes to display onto the table
      *
      * @var array
      */
     public $eloquentTableAttributes = array();
-    
+
     /*
      * Stores column relationship meanings
      *
      * @var array
      */
     public $eloquentTableMeans = array();
-    
+
     /*
      * Stores column names to apply sorting
      *
      * @var array
      */
     public $eloquentTableSort = array();
-    
+
     /*
      * Enables / disables showing the pages on the table if the collection
      * is paginated
@@ -83,10 +82,10 @@ trait TableTrait
      * @var bool
      */
     public $eloquentTablePages = false;
-    
+
     /**
-     * Assigns columns to display
-     * 
+     * Assigns columns to display.
+     *
      * @param array $columns
      *
      * @return $this
@@ -94,14 +93,14 @@ trait TableTrait
     public function columns(array $columns = array())
     {
         $this->eloquentTableColumns = $columns;
-        
+
         return $this;
     }
-    
+
     /**
      * Assigns columns to hide for smartphone viewing
-     * on responsive designed websites such as bootstrap
-     * 
+     * on responsive designed websites such as bootstrap.
+     *
      * @param array $columns
      *
      * @return $this
@@ -109,25 +108,25 @@ trait TableTrait
     public function hidden(array $columns = array())
     {
         $this->eloquentTableHiddenColumns = $columns;
-        
+
         return $this;
     }
 
     /**
-     * Enables pages to be shown on the view
+     * Enables pages to be shown on the view.
      *
      * @return $this
      */
     public function showPages()
     {
         $this->eloquentTablePages = true;
-        
+
         return $this;
     }
-    
+
     /**
-     * Assigns attributes to display on the table
-     * 
+     * Assigns attributes to display on the table.
+     *
      * @param array $attributes
      *
      * @return $this
@@ -135,13 +134,13 @@ trait TableTrait
     public function attributes(array $attributes = array())
     {
         $this->eloquentTableAttributes = $this->arrayToHtmlAttributes($attributes);
-        
+
         return $this;
     }
 
     /**
-     * Generates view for the table
-     * 
+     * Generates view for the table.
+     *
      * @param string $view
      *
      * @return mixed
@@ -149,9 +148,8 @@ trait TableTrait
     public function render($view = '')
     {
         // If no attributes have been set, we'll set them to the configuration defaults
-        if(count($this->eloquentTableAttributes) === 0)
-        {
-            $attributes = Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_table_attributes', []);
+        if (count($this->eloquentTableAttributes) === 0) {
+            $attributes = Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_table_attributes', []);
 
             $this->attributes($attributes);
         }
@@ -161,26 +159,23 @@ trait TableTrait
          * separator to see what laravel version we're using so the
          * correct blade tags are used.
          */
-        if( ! $view)
-        {
-            if(EloquentTableServiceProvider::$configSeparator === '::')
-            {
+        if (!$view) {
+            if (EloquentTableServiceProvider::$configSeparator === '::') {
                 $view = 'eloquenttable::laravel-4-table';
-            } else
-            {
+            } else {
                 $view = 'eloquenttable::laravel-5-table';
             }
         }
 
         return View::make($view, array(
-            'collection' => $this
+            'collection' => $this,
         ))->render();
     }
-    
+
     /**
-     * Stores modifications to columns
-     * 
-     * @param string $column
+     * Stores modifications to columns.
+     *
+     * @param string  $column
      * @param Closure $closure
      *
      * @return $this
@@ -188,71 +183,77 @@ trait TableTrait
     public function modify($column, Closure $closure)
     {
         $this->eloquentTableModifications[$column] = $closure;
-        
-        return $this;
-    }
-    
-    /**
-     * Stores modifications to cells
-     * 
-     * @param string $column
-     * @param Closure $closure
-     *
-     * @return $this
-     */
-    public function modifyCell($column, $closure) {
-        $this->eloquentTableCellAttributesModifications[$column] = $closure;
-        return $this;
-    }
-    
-    /**
-     * Stores modifications to rows
-     * 
-     * @param string $name
-     * @param Closure $closure
-     *
-     * @return $this
-     */
-    public function modifyRow($name, $closure) {
-        $this->eloquentTableRowAttributesModifications[$name] = $closure;
+
         return $this;
     }
 
     /**
-     * Retrieves cell attributes
-     * 
+     * Stores modifications to cells.
+     *
+     * @param string  $column
+     * @param Closure $closure
+     *
+     * @return $this
+     */
+    public function modifyCell($column, $closure)
+    {
+        $this->eloquentTableCellAttributesModifications[$column] = $closure;
+
+        return $this;
+    }
+
+    /**
+     * Stores modifications to rows.
+     *
+     * @param string  $name
+     * @param Closure $closure
+     *
+     * @return $this
+     */
+    public function modifyRow($name, $closure)
+    {
+        $this->eloquentTableRowAttributesModifications[$name] = $closure;
+
+        return $this;
+    }
+
+    /**
+     * Retrieves cell attributes.
+     *
      * @param string $column
-     * @param Array $record
+     * @param Array  $record
      *
      * @return string
      */
-    public function getCellAttributes($column, $record = null) {
+    public function getCellAttributes($column, $record = null)
+    {
         $attributes = array();
         if (array_key_exists($column, $this->eloquentTableCellAttributesModifications)) {
             $attributes = call_user_func($this->eloquentTableCellAttributesModifications[$column], $record);
             if (array_key_exists($column, $this->eloquentTableHiddenColumns)) {
-                $attributes = array_merge($attributes,$this->eloquentTableHiddenColumns[$column]);
+                $attributes = array_merge($attributes, $this->eloquentTableHiddenColumns[$column]);
             } elseif (in_array($column, $this->eloquentTableHiddenColumns)) {
                 /*
                  * No custom attributes found, using default config attributes
                  */
-                $attributes = array_merge($attributes,Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_hidden_column_attributes'));
+                $attributes = array_merge($attributes, Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_hidden_column_attributes'));
             }
-            
+
             return $this->arrayToHtmlAttributes($attributes);
         } else {
-            return null;
+            return;
         }
     }
-    
+
     /**
-     * Retrieves row attributes
-     * 
+     * Retrieves row attributes.
+     *
      * @param Array $record
      *
      * @return string
      */
-    public function getRowAttributes($record) {
+    public function getRowAttributes($record)
+    {
         $attributes = array();
         foreach ($this->eloquentTableRowAttributesModifications as $closure) {
             $tmpAtrributes = call_user_func($closure, $record);
@@ -260,12 +261,13 @@ trait TableTrait
                 $attributes = array_merge($attributes, $tmpAtrributes);
             }
         }
+
         return $this->arrayToHtmlAttributes($attributes);
     }
-    
+
     /**
-     * Stores columns to sort in an array
-     * 
+     * Stores columns to sort in an array.
+     *
      * @param array $columns
      *
      * @return $this
@@ -273,14 +275,14 @@ trait TableTrait
     public function sortable($columns = array())
     {
         $this->eloquentTableSort = $columns;
-        
+
         return $this;
     }
-    
+
     /**
      * Tells the collection to use a different key (such as a relationship key)
-     * rather than the one specified in the column
-     * 
+     * rather than the one specified in the column.
+     *
      * @param string $column
      * @param string $relation
      *
@@ -289,14 +291,14 @@ trait TableTrait
     public function means($column, $relation)
     {
         $this->eloquentTableMeans[$column] = $relation;
-        
+
         return $this;
     }
-    
+
     /**
      * Retrieves an eloquent relationships nested property
-     * from a column
-     * 
+     * from a column.
+     *
      * @param string $column
      *
      * @return mixed
@@ -307,23 +309,22 @@ trait TableTrait
 
         $tmpStr = $this;
 
-        foreach($attributes as $attribute)
-        {
-            if($attribute === end($attributes))
-            {
-                if(is_object($tmpStr)) $tmpStr = $tmpStr->$attribute;
-            } else
-            {
+        foreach ($attributes as $attribute) {
+            if ($attribute === end($attributes)) {
+                if (is_object($tmpStr)) {
+                    $tmpStr = $tmpStr->$attribute;
+                }
+            } else {
                 $tmpStr = $this->$attribute;
             }
         }
 
         return $tmpStr;
     }
-    
+
     /**
-     * Retrieves an eloquent relationship object from a column
-     * 
+     * Retrieves an eloquent relationship object from a column.
+     *
      * @param string $column
      *
      * @return mixed
@@ -331,21 +332,19 @@ trait TableTrait
     public function getRelationshipObject($column)
     {
         $attributes = explode('.', $column);
-        
-        if(count($attributes) > 1)
-        {
-            $relationship = $attributes[count($attributes)-2];
-        } else
-        {
-            $relationship = $attributes[count($attributes)-1];
+
+        if (count($attributes) > 1) {
+            $relationship = $attributes[count($attributes) - 2];
+        } else {
+            $relationship = $attributes[count($attributes) - 1];
         }
-        
+
         return $this->$relationship;
     }
-    
+
     /**
-     * Retrieves hidden column attributes
-     * 
+     * Retrieves hidden column attributes.
+     *
      * @param string $column
      *
      * @return string
@@ -355,56 +354,50 @@ trait TableTrait
         /*
          * Check if custom attributes are being set on hidden column
          */
-        if(array_key_exists($column, $this->eloquentTableHiddenColumns))
-        {
+        if (array_key_exists($column, $this->eloquentTableHiddenColumns)) {
             return $this->arrayToHtmlAttributes($this->eloquentTableHiddenColumns[$column]);
-        } elseif(in_array($column, $this->eloquentTableHiddenColumns))
-        {
+        } elseif (in_array($column, $this->eloquentTableHiddenColumns)) {
             /*
              * No custom attributes found, using default config attributes
              */
-            return $this->arrayToHtmlAttributes(Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_hidden_column_attributes'));
-        } else
-        {
+            return $this->arrayToHtmlAttributes(Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_hidden_column_attributes'));
+        } else {
             /*
              * Column wasn't found on the table
              */
-            return null;
+            return;
         }
     }
-    
+
     /**
      * Allows all columns on the current database table to be sorted through
-     * query scope
-     * 
+     * query scope.
+     *
      * @param $query
      * @param string $field
      * @param string $sort
      *
      * @return mixed
      */
-    public function scopeSort($query, $field = NULL, $sort = NULL)
+    public function scopeSort($query, $field = null, $sort = null)
     {
         /*
          * Make sure both the field and sort variables are present
          */
-        if($field && $sort)
-        {
+        if ($field && $sort) {
             /*
              * Retrieve all column names for the current model table
              */
             $columns = Schema::getColumnListing($this->table);
-            
+
             /*
              * Make sure the field inputted is available on the current table
              */
-            if(in_array($field, $columns))
-            {
+            if (in_array($field, $columns)) {
                 /*
                  * Make sure the sort input is equal to asc or desc
                  */
-                if($sort === 'asc' || $sort === 'desc')
-                {
+                if ($sort === 'asc' || $sort === 'desc') {
                     /*
                      * Return the query sorted
                      */
@@ -412,16 +405,15 @@ trait TableTrait
                 }
             }
         }
-        
+
         /*
          * Default order by created at field
          */
         return $query->orderBy('created_at', 'desc');
-        
     }
 
     /**
-     * Overrides the newCollection method from the model this extends from
+     * Overrides the newCollection method from the model this extends from.
      *
      * @param array $models
      *
@@ -431,10 +423,10 @@ trait TableTrait
     {
         return new TableCollection($models);
     }
-    
+
     /**
-     * Converts an array of attributes to an html attribute string
-     * 
+     * Converts an array of attributes to an html attribute string.
+     *
      * @param array $attributes
      *
      * @return string
@@ -442,15 +434,13 @@ trait TableTrait
     private function arrayToHtmlAttributes(array $attributes = array())
     {
         $attributeString = '';
-        
-        if(count($attributes) > 0)
-        {
-            foreach ($attributes as $key => $value)
-            {
-                $attributeString .= " " . $key . "='" . $value . "'";
+
+        if (count($attributes) > 0) {
+            foreach ($attributes as $key => $value) {
+                $attributeString .= ' '.$key."='".$value."'";
             }
         }
-        
+
         return $attributeString;
     }
 }

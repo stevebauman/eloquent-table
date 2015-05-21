@@ -5,8 +5,7 @@ namespace Stevebauman\EloquentTable;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class TableCollection
- * @package Stevebauman\EloquentTable
+ * Class TableCollection.
  */
 class TableCollection extends Collection
 {

@@ -5,8 +5,7 @@ namespace Stevebauman\EloquentTable;
 use Illuminate\Pagination\Paginator;
 
 /**
- * Class TablePaginator
- * @package Stevebauman\EloquentTable
+ * Class TablePaginator.
  */
 class TablePaginator extends Paginator
 {

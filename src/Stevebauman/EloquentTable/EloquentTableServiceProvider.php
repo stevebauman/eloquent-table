@@ -5,8 +5,7 @@ namespace Stevebauman\EloquentTable;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class EloquentTableServiceProvider
- * @package Stevebauman\EloquentTable
+ * Class EloquentTableServiceProvider.
  */
 class EloquentTableServiceProvider extends ServiceProvider
 {
@@ -19,7 +18,7 @@ class EloquentTableServiceProvider extends ServiceProvider
 
     /**
      * The configuration separator for packages.
-     * Allows compatibility with Laravel 4 and 5
+     * Allows compatibility with Laravel 4 and 5.
      *
      * @var string
      */
@@ -27,33 +26,29 @@ class EloquentTableServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
-        if(method_exists($this, 'package'))
-        {
+        if (method_exists($this, 'package')) {
             /*
              * Looks like we're using Laravel 4, let's use the
              * package method to easily register everything
              */
             $this->package('stevebauman/eloquenttable');
-        } else
-        {
+        } else {
             /*
              * Looks like we're using Laravel 5, let's set
              * our configuration file to be publishable
              */
             $this->publishes([
-                __DIR__ . '/../../config/config.php' => config_path('eloquenttable.php'),
+                __DIR__.'/../../config/config.php' => config_path('eloquenttable.php'),
             ], 'config');
 
             /*
              * Allow the views to be publishable
              */
             $this->publishes([
-                __DIR__ . '/../../views' => base_path('resources/views/stevebauman/eloquenttable'),
+                __DIR__.'/../../views' => base_path('resources/views/stevebauman/eloquenttable'),
             ], 'views');
 
             /*
@@ -69,15 +64,15 @@ class EloquentTableServiceProvider extends ServiceProvider
         }
 
         // Include the helpers so we can output sortable links
-        include __DIR__ .'/../../helpers.php';
+        include __DIR__.'/../../helpers.php';
     }
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register() {}
+    public function register()
+    {
+    }
 
     /**
      * Get the services provided by the provider.
