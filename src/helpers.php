@@ -46,6 +46,9 @@ if (!function_exists('sortableUrlLink')) {
             $icon = sprintf('%s', Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_sorting_icons.sort_class'));
         }
 
+        // Merge the parameters with any get params
+        $parameters = array_merge(Input::except('sort', 'field'), $parameters);
+
         // Now we'll return a link of the current page with the sorting parameters attached
         return sprintf('<a class="link-sort" href="%s">%s <i class="%s"></i></a>', Request::url().'?'.http_build_query($parameters), $title, $icon);
     }
