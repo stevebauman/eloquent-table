@@ -28,7 +28,7 @@
             {{-- We'll loop through every column we were given --}}
             @foreach($collection->eloquentTableColumns as $key => $name)
                 {{-- Make sure we apply the hidden column attributes to the table data if it's meant to be hidden with the modifications --}}
-                <td {{ {{ $collection->getCellAttributes($key,$record) }} }}>
+                <td {{ $collection->getCellAttributes($key,$record) }}>
                 {{-- If the column key exists in the table means array, we're outputting a relationship value --}}
                 @if(array_key_exists($key, $collection->eloquentTableMeans))
                     {{-- If the column key also exists in the table modifications array, we're also modifying the relationship object --}}
