@@ -167,9 +167,9 @@ trait TableTrait
             }
         }
 
-        return View::make($view, array(
+        return View::make($view, [
             'collection' => $this,
-        ))->render();
+        ])->render();
     }
 
     /**

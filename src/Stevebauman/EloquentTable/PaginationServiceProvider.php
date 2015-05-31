@@ -38,6 +38,6 @@ class PaginationServiceProvider extends LaravelPaginationServiceProvider
      */
     public function provides()
     {
-        return array('paginator');
+        return ['paginator'];
     }
 }
