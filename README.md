@@ -35,7 +35,6 @@ Publish the config file (optional)
 
 Include the service providers in the <em>bottom</em> `config/app.php` config file:
 
-    'Stevebauman\EloquentTable\PaginationServiceProvider',
     'Stevebauman\EloquentTable\EloquentTableServiceProvider',
 
 Publish the config file (mandatory in Laravel 5)
@@ -43,6 +42,9 @@ Publish the config file (mandatory in Laravel 5)
     php artisan vendor:publish
 
 You're good to go!
+
+> **Note**: The `showPages()` method below in unavailable in Laravel 5 due to the pagination changes. You'll need
+to display your pages manually using the `render()` method shown here: http://laravel.com/docs/5.0/pagination#usage
 
 ### Usage
 
