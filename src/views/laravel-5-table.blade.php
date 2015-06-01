@@ -63,8 +63,3 @@
     @endforeach
     </tbody>
 </table>
-
-{{-- If the method 'showPages' is called, the eloquentTablePages attribute will be true, and we'll display the pages here --}}
-@if($collection->eloquentTablePages)
-    <div class="text-center">{!! $collection->appends(Input::except('page'))->links() !!}</div>
-@endif
