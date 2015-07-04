@@ -1,5 +1,4 @@
-![Eloquent Table Banner]
-(https://raw.githubusercontent.com/stevebauman/eloquent-table/master/eloquent-table-banner.jpg)
+# Eloquent Table
 
 [![Travis CI](https://travis-ci.org/stevebauman/eloquent-table.svg?branch=master)](https://travis-ci.org/stevebauman/eloquent-table)
 [![Code Climate](https://codeclimate.com/github/stevebauman/eloquent-table/badges/gpa.svg)](https://codeclimate.com/github/stevebauman/eloquent-table)
