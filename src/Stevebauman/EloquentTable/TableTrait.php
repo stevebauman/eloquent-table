@@ -103,7 +103,7 @@ trait TableTrait
      *
      * @param $key column key name
      * @param $label label of the link
-     * @param $link link structure (ex. user/%id/edit)
+     * @param $link link structure, with %key for id and %attribute_name substitutions (ex. users/%user_id/comments/%key/edit/)
      * @param null $closure optional closure executed to generate te link
      * @param null $attributes optional attributes of the html a element
      * @return $this
@@ -114,10 +114,15 @@ trait TableTrait
 
         $this->eloquentTableModifications[$key] = function($record) use ($key, $label, $link, $closure, $attributes) {
             if($closure !== null && $closure instanceof Closure ) {
-                return call_user_func_array($closure, [$key, $label, $link]);
+                return call_user_func_array($closure, [$record, $label, $link, $key]);
             }
 
-            return View::make('eloquenttable::linkColumn',['label' => $label, 'link' => str_replace("%id",$record->getKey(),$link), 'attributes' => $attributes])->render();
+            $link = str_replace("%key",$record->getKey(),$link);
+            $link = preg_replace_callback('/%([\w_]+)/', function($match) use(&$record) {
+                return urlencode($record->{$match[1]}) ?: "";
+            }, $link);
+
+            return View::make('eloquenttable::linkColumn',['label' => $label, 'link' => $link, 'attributes' => $attributes])->render();
         };
 
         return $this;
