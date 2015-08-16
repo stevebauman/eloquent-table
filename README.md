@@ -65,18 +65,18 @@ Grab records from your model like usual:
 
 Inside your blade view, we just specify the columns we want to show, and then call the render method:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
             'author' => 'Authored By'
         ))
         ->render() 
-    }}
+    !!}
 
 ##### Handling relationship values using `means($column, $relationship)`:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
@@ -85,7 +85,7 @@ Inside your blade view, we just specify the columns we want to show, and then ca
         ))
         ->means('owned_by', 'user.first_name')
         ->render()
-    }}
+    !!}
 
 The model books, needs to have a user method defining it's relation for this to work.
 
@@ -93,7 +93,7 @@ You must also use 'dot' notation to indicate the relationship.
 
 ##### Customizing the display of the column value using `modify($column, $closure)`:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
@@ -105,14 +105,14 @@ You must also use 'dot' notation to indicate the relationship.
             return $user->first_name . ' ' . $user->last_name;
         })
         ->render() 
-    }}
+    !!}
 
 Using modify, we can specify the column we want to modify, and the function will return the current relationship record (if the column is a relationship),
 as well as the current base record, in this case the book.
 
 ##### Customizing the attributes of each cell of a column using `modifyCell($column, $closure)`:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
@@ -124,12 +124,12 @@ as well as the current base record, in this case the book.
             return array('class' => $user->role);
         })
         ->render() 
-    }}
+    !!}
 Using modifyCell, we can specify the column of the cell we want to modify, and the function should return an array of attributes to be added to the cell.
 
 ##### Customizing the attributes of each row in the table using `modifyRow($name, $closure)`:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
@@ -141,7 +141,7 @@ Using modifyCell, we can specify the column of the cell we want to modify, and t
             return array('id' => 'user-'.$user->id);
         })
         ->render() 
-    }}
+    !!}
 Using modifyRow, we can add named modifications ('mod1' in our previous example), and the function should return an array of attributes to be added to each row.
 
 ##### With eloquent-table, we can also generate sortable links for columns easily:
@@ -153,7 +153,7 @@ In your controller:
 
 In your view:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
@@ -162,7 +162,7 @@ In your view:
         ))
         ->sortable(array('id', 'title'))
         ->render()
-    }}
+    !!}
 
 A link will be generated inside the column header that will be clickable. The HTML generated will look like:
 
@@ -180,7 +180,7 @@ In your controller:
 
 In your view:
 
-    {{ 
+    {!!
         $books->columns(array(
             'id' => 'ID',
             'title' => 'Title',
@@ -199,7 +199,7 @@ In your view:
         ->sortable(array('id', 'title'))
         ->showPages()
         ->render()
-    }}
+    !!}
 
 ##### What if I want to generate a table for a relationship?:
 
@@ -213,7 +213,7 @@ In this case, the book is going to have many authors (`hasMany` relationship)
 
 In your view:
 
-    {{ 
+    {!!
         $book->authors->columns(
             'id' => 'ID',
             'name' => 'Name',
@@ -221,7 +221,7 @@ In your view:
         )
         ->means('books', 'num_of_books')
         ->render()
-    }}
+    !!}
 
 Keep in mind, we cannot paginate the table, or provide sortable columns on relationships. If you need this, grab it separately:
 
@@ -238,15 +238,15 @@ In your controller:
 
 In your view:
 
-    {{ 
+    {!!
         $authors->columns(array(
             'name' => 'Name',
         ))->render()
-    }}
+    !!}
 
 ##### Customizing table attributes using `attributes($attributes = array())`
 
-    {{ 
+    {!!
         $authors->columns(array(
             'name' => 'Name',
         ))
@@ -255,14 +255,14 @@ In your view:
             'class' => 'table table-striped table-bordered',
         ))
         ->render()
-    }}
+    !!}
 
 ##### Showing your pages somewhere else:
 
 Just don't call the `showPages()` method on the collection and put your pages
 somewhere on your page like you would regularly do.
 
-    {{ 
+    {!!
         $authors->columns(array(
             'name' => 'Name',
         ))
@@ -271,9 +271,9 @@ somewhere on your page like you would regularly do.
             'class' => 'table table-striped table-bordered',
         ))
         ->render()
-    }}
+    !!}
 
-    <div class="text-center">{{ $authors->appends(Input::except('page'))->links() }}</div>
+    <div class="text-center">{!! $authors->appends(Input::except('page'))->links() !!}</div>
 
 ##### Why is a pagination service provider required?
 
