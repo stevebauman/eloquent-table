@@ -9,7 +9,7 @@
 
 ## Attention
 
-I'd heavily recommend the use of [Orchestra/HTML](https://github.com/orchestral/html) over this, as their solution is further tested, complete, and much more robust. This package will receive **no further functionality updates**, only bug fixes.
+I'd heavily recommend the use of [Orchestra/HTML](https://github.com/orchestral/html) over this package, as their solution is further tested, complete, and much more robust. This package will receive **no further functionality updates**, only bug fixes.
 
 ### Description
 
