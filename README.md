@@ -7,6 +7,10 @@
 [![Total Downloads](https://poser.pugx.org/stevebauman/eloquenttable/downloads.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
 [![License](https://poser.pugx.org/stevebauman/eloquenttable/license.svg)](https://packagist.org/packages/stevebauman/eloquenttable)
 
+## Attention
+
+I'd heavily recommend the use of [Orchestra/HTML](https://github.com/orchestral/html) over this, as their solution is further tested, complete, and much more robust. This package will receive **no further functionality updates**, only bug fixes.
+
 ### Description
 
 Eloquent table is an HTML table generator for laravel collections.
