@@ -21,13 +21,13 @@ class PaginationServiceProvider extends LaravelPaginationServiceProvider
      */
     public function register()
     {
-        $function_name ="singleton";
+        $method ="singleton";
 
-        if (!method_exists($this->app, $function_name)) {
-            $function_name = "bindShared";
+        if (!method_exists($this->app, $method)) {
+            $method = "bindShared";
         }
 
-        $this->app->$function_name('paginator', function ($app) {
+        $this->app->$method('paginator', function ($app) {
             $paginator = new TablePaginatorFactory($app['request'], $app['view'], $app['translator']);
 
             $paginator->setViewName($app['config']['view.pagination']);
