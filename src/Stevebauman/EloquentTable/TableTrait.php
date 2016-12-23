@@ -388,7 +388,7 @@ trait TableTrait
             /*
              * Retrieve all column names for the current model table
              */
-            $columns = Schema::getColumnListing($this->table);
+            $columns = Schema::getColumnListing($this->getTable());
 
             /*
              * Make sure the field inputted is available on the current table
