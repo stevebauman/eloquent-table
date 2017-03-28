@@ -47,7 +47,7 @@ if (!function_exists('sortableUrlLink')) {
         }
 
         // Merge the parameters with any get params
-        $parameters = array_merge(Input::except('sort', 'field'), $parameters);
+        $parameters = array_merge(Request::query(), $parameters);
 
         // Now we'll return a link of the current page with the sorting parameters attached
         return sprintf('<a class="link-sort" href="%s">%s <i class="%s"></i></a>', Request::url().'?'.http_build_query($parameters), $title, $icon);
