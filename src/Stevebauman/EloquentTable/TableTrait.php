@@ -97,6 +97,32 @@ trait TableTrait
         return $this;
     }
 
+	/**
+     *
+     * Insert a new column with a link
+     *
+     * @param $key column key name
+     * @param $label label of the link
+     * @param $link link structure (ex. user/%id/edit)
+     * @param null $closure optional closure executed to generate te link
+     * @param null $attributes optional attributes of the html a element
+     * @return $this
+     */
+    public function addLinkColumn($key, $label, $link, $closure=null, $attributes=null)
+    {
+        $this->eloquentTableColumns[$key] = $label;
+
+        $this->eloquentTableModifications[$key] = function($record) use ($key, $label, $link, $closure, $attributes) {
+            if($closure !== null && $closure instanceof Closure ) {
+                return call_user_func_array($closure, [$key, $label, $link]);
+            }
+
+            return View::make('eloquenttable::linkColumn',['label' => $label, 'link' => str_replace("%id",$record->getKey(),$link), 'attributes' => $attributes])->render();
+        };
+
+        return $this;
+    }
+
     /**
      * Assigns columns to hide for smartphone viewing
      * on responsive designed websites such as bootstrap.
