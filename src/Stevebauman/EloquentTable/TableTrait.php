@@ -160,10 +160,12 @@ trait TableTrait
          * correct blade tags are used.
          */
         if (!$view) {
-            if (EloquentTableServiceProvider::$configSeparator === '::') {
-                $view = 'eloquenttable::laravel-4-table';
-            } else {
-                $view = 'eloquenttable::laravel-5-table';
+            if(!($view = Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_render_view'))) {
+                if (EloquentTableServiceProvider::$configSeparator === '::') {
+                    $view = 'eloquenttable::laravel-4-table';
+                } else {
+                    $view = 'eloquenttable::laravel-5-table';
+                }
             }
         }
 

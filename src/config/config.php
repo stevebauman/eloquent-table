@@ -49,4 +49,6 @@ return [
 
     ],
 
+    'default_render_view' => null,
+
 ];
