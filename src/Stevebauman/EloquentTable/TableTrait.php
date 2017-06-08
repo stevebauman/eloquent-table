@@ -98,6 +98,22 @@ trait TableTrait
     }
 
     /**
+     * Remove columns to display.
+     *
+     * @param array $columns
+     *
+     * @return $this
+     */
+    public function removeColumns(array $columns = array())
+    {
+        $this->eloquentTableColumns = array_diff($this->eloquentTableColumns, $columns);
+
+        return $this;
+    }
+
+
+
+    /**
      * Assigns columns to hide for smartphone viewing
      * on responsive designed websites such as bootstrap.
      *
