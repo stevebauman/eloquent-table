@@ -120,7 +120,7 @@ trait TableTrait
      */
     public function onlyColumns(array $columns = array())
     {
-        $this->eloquentTableColumns = array_intersect($this->eloquentTableColumns, $columns);
+        $this->eloquentTableColumns = array_intersect_key($this->eloquentTableColumns, array_flip($columns));
 
         return $this;
     }
