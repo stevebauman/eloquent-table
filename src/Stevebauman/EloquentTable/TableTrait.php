@@ -92,7 +92,7 @@ trait TableTrait
      */
     public function columns(array $columns = array())
     {
-        $this->eloquentTableColumns = $columns;
+        $this->eloquentTableColumns = array_merge($this->eloquentTableColumns, $columns);
 
         return $this;
     }
