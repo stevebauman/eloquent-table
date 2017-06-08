@@ -106,8 +106,12 @@ trait TableTrait
      */
     public function removeColumns(array $columns = array())
     {
-        $this->eloquentTableColumns = array_diff($this->eloquentTableColumns, $columns);
-
+        foreach($columns as $column) {
+            if(array_key_exists($column, $this->eloquentTableColumns)) {
+                unset($this->eloquentTableColumns[$column]);
+            }
+        }
+        
         return $this;
     }
 
