@@ -111,6 +111,20 @@ trait TableTrait
         return $this;
     }
 
+    /**
+     * Only columns to display.
+     *
+     * @param array $columns
+     *
+     * @return $this
+     */
+    public function onlyColumns(array $columns = array())
+    {
+        $this->eloquentTableColumns = array_intersect($this->eloquentTableColumns, $columns);
+
+        return $this;
+    }
+
 
 
     /**
