@@ -40,7 +40,7 @@ trait TableTrait
      */
     public $eloquentTableModifications = array();
 
-     /*
+    /*
      * Stores rows modifications
      *
      * @var array
@@ -106,9 +106,9 @@ trait TableTrait
      */
     public function removeColumns(array $columns = array())
     {
-        if($columns) {
-            foreach($columns as $column) {
-                if(array_key_exists($column, $this->eloquentTableColumns)) {
+        if ($columns) {
+            foreach ($columns as $column) {
+                if (array_key_exists($column, $this->eloquentTableColumns)) {
                     unset($this->eloquentTableColumns[$column]);
                 }
             }
@@ -126,14 +126,12 @@ trait TableTrait
      */
     public function onlyColumns(array $columns = array())
     {
-        if($columns) {
+        if ($columns) {
             $this->eloquentTableColumns = array_intersect_key($this->eloquentTableColumns, array_flip($columns));
         }
 
         return $this;
     }
-
-
 
     /**
      * Assigns columns to hide for smartphone viewing
@@ -187,7 +185,7 @@ trait TableTrait
     {
         // If no attributes have been set, we'll set them to the configuration defaults
         if (count($this->eloquentTableAttributes) === 0) {
-            $attributes = Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_table_attributes', []);
+            $attributes = Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_table_attributes', []);
 
             $this->attributes($attributes);
         }
@@ -198,7 +196,7 @@ trait TableTrait
          * correct blade tags are used.
          */
         if (!$view) {
-            if(!($view = Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_render_view'))) {
+            if (!($view = Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_render_view'))) {
                 if (EloquentTableServiceProvider::$configSeparator === '::') {
                     $view = 'eloquenttable::laravel-4-table';
                 } else {
@@ -220,9 +218,17 @@ trait TableTrait
      *
      * @return $this
      */
-    public function modify($column, Closure $closure)
+    public function modify($columns, Closure $closure = null)
     {
-        $this->eloquentTableModifications[$column] = $closure;
+
+        if (is_array($columns)) {
+            foreach ($columns as $column => $closure) {
+                $this->modify($column, $closure);
+            }
+            return $this;
+        }
+
+        $this->eloquentTableModifications[$columns] = $closure;
 
         return $this;
     }
@@ -276,7 +282,7 @@ trait TableTrait
                 /*
                  * No custom attributes found, using default config attributes
                  */
-                $attributes = array_merge($attributes, Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_hidden_column_attributes'));
+                $attributes = array_merge($attributes, Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_hidden_column_attributes'));
             }
 
             return $this->arrayToHtmlAttributes($attributes);
@@ -400,7 +406,7 @@ trait TableTrait
             /*
              * No custom attributes found, using default config attributes
              */
-            return $this->arrayToHtmlAttributes(Config::get('eloquenttable'.EloquentTableServiceProvider::$configSeparator.'default_hidden_column_attributes'));
+            return $this->arrayToHtmlAttributes(Config::get('eloquenttable' . EloquentTableServiceProvider::$configSeparator . 'default_hidden_column_attributes'));
         } else {
             /*
              * Column wasn't found on the table
@@ -477,7 +483,7 @@ trait TableTrait
 
         if (count($attributes) > 0) {
             foreach ($attributes as $key => $value) {
-                $attributeString .= ' '.$key."='".$value."'";
+                $attributeString .= ' ' . $key . "='" . $value . "'";
             }
         }
 
