@@ -1,3 +1,4 @@
+@if(!$collection->eloquentTableOnlyBody)
 {{-- Let's start generating the table for the collection, first we'll assign the table attributes --}}
 <table @if($collection->eloquentTableAttributes) {!! $collection->eloquentTableAttributes !!} @else class="table table-striped" @endif>
     <thead>
@@ -22,6 +23,7 @@
     </thead>
 
     <tbody>
+@endif
     {{-- Let's get started going through the actual collection records and outputting the data --}}
     @foreach($collection as $record)
         <tr {!! $collection->getRowAttributes($record) !!}>
@@ -61,5 +63,7 @@
             @endforeach
         </tr>
     @endforeach
+@if(!$collection->eloquentTableOnlyBody)
     </tbody>
 </table>
+@endif
