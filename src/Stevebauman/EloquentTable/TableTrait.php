@@ -83,14 +83,6 @@ trait TableTrait
      */
     public $eloquentTablePages = false;
 
-    /*
-     * Enables / disables showing only the body w/o the <table>
-     * is paginated
-     *
-     * @var bool
-     */
-    public $eloquentTableOnlyBody = false;
-
     /**
      * Assigns columns to display.
      *
@@ -152,20 +144,6 @@ trait TableTrait
     public function hidden(array $columns = array())
     {
         $this->eloquentTableHiddenColumns = $columns;
-
-        return $this;
-    }
-
-    /**
-     * Show only the body
-     *
-     * @param array $columns
-     *
-     * @return $this
-     */
-    public function onlyBody($body = false)
-    {
-        $this->eloquentTableOnlyBody = $body;
 
         return $this;
     }
