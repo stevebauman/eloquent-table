@@ -8,13 +8,13 @@
             <th {!! $collection->getHiddenColumnAttributes($key) !!}>
                 @if(in_array($key, $collection->eloquentTableSort))
                     {{-- If the header key is inside the table sort array, we'll output the sorted link --}}
-                    {!! sortableUrlLink($name, array('field' => $key, 'sort'=>'asc')) !!}
+                    {!! sortableUrlLink(is_array($name) ? $name['title'] : $name, array('field' => $key, 'sort'=> 'asc')) !!}
                 @elseif(array_key_exists($key, $collection->eloquentTableSort))
                     {{-- If the header key is a key inside of the table sort array, we'll output the sorted link --}}
-                    {!! sortableUrlLink($name, array('field' => $collection->eloquentTableSort[$key], 'sort'=>'asc')) !!}
+                    {!! sortableUrlLink(is_array($name) ? $name['title'] : $name, array('field' => $collection->eloquentTableSort[$key], 'sort'=>'asc')) !!}
                 @else
                     {{-- Looks like we don't have any header modifications, we'll just output the name --}}
-                    {{ ucfirst($name) }}
+                    {{ is_array($name) ? $name['title'] : $name }}
                 @endif
             </th>
         @endforeach
@@ -48,7 +48,7 @@
                             {!! call_user_func_array($collection->eloquentTableModifications[$key], array($record)) !!}
                         @else
                             {{-- We don't need to modify the value, let's see if the property exists with the column key first --}}
-                            @if($record->{$key})
+                            @if(isset($record[$key]))
                                 {{-- Great, the key exists on the record, we'll output it here --}}
                                 {!! $record->{$key}  !!}
                             @else
