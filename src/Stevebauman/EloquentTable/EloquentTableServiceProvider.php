@@ -2,6 +2,7 @@
 
 namespace Stevebauman\EloquentTable;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -41,20 +42,20 @@ class EloquentTableServiceProvider extends ServiceProvider
              * our configuration file to be publishable
              */
             $this->publishes([
-                __DIR__.'/../../config/config.php' => config_path('eloquenttable.php'),
+                __DIR__ . '/../../config/config.php' => config_path('eloquenttable.php'),
             ], 'config');
 
             /*
              * Allow the views to be publishable
              */
             $this->publishes([
-                __DIR__.'/../../views' => base_path('resources/views/stevebauman/eloquenttable'),
+                __DIR__ . '/../../views' => base_path('resources/views/stevebauman/eloquenttable'),
             ], 'views');
 
             /*
              * Load our views
              */
-            $this->loadViewsFrom(__DIR__.'/../../views', 'eloquenttable');
+            $this->loadViewsFrom(__DIR__ . '/../../views', 'eloquenttable');
 
             /*
              * Set the configuration separator to single dot since
@@ -64,7 +65,12 @@ class EloquentTableServiceProvider extends ServiceProvider
         }
 
         // Include the helpers so we can output sortable links
-        include __DIR__.'/../../helpers.php';
+        include __DIR__ . '/../../helpers.php';
+
+        //Add the Blade directive
+        Blade::directive('table', function ($expression) {
+            return "<?php echo table_blade_directive($expression); ?>";
+        });
     }
 
     /**
