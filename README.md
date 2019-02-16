@@ -7,9 +7,13 @@
 [![Total Downloads](https://poser.pugx.org/stevebauman/eloquenttable/downloads.svg)](https://packagist.org/packages/stevebauman/eloquenttable) 
 [![License](https://poser.pugx.org/stevebauman/eloquenttable/license.svg)](https://packagist.org/packages/stevebauman/eloquenttable)
 
-## Attention
+## 🚨 Abandoned 🚨
 
-I'd heavily recommend the use of [Orchestra/HTML](https://github.com/orchestral/html) over this package, as their solution is further tested, complete, and much more robust. This package will receive **no further functionality updates**, only bug fixes.
+I'd heavily recommend the use of [Orchestra/HTML](https://github.com/orchestral/html) over this package, as their solution is further tested, complete, and much more robust. This package will receive **no further updates**.
+
+If you would like to be a maintainer of this package, please contact me at steven_bauman@outlook.com, or create an issue.
+
+Thank you!
 
 ### Description
 
