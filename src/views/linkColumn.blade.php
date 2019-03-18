@@ -1,0 +1,1 @@
+<a href="{{ $link }}" @if($attributes) {!! $attributes !!} @else class="btn btn-default" @endif>{{ $label }}</a>
